@@ -30,6 +30,10 @@ button {
     cursor: pointer;
 }
 
+button:hover {
+    background-color: #032a53;
+}
+
 .options {
     margin-top: 10px;
     display: flex;
@@ -38,7 +42,7 @@ button {
 
 a {
     text-decoration: none;
-    color: #007bff;
+    color: wheat;
     cursor: pointer;
 }
 
