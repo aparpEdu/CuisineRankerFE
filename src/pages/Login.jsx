@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./Login.css";
 
 const Login = () => {
@@ -13,20 +14,33 @@ const Login = () => {
         setPassword(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (email.trim() === "" || password.trim() === "") {
             alert("Please enter both email and password.");
-
+            return;
         }
 
+        try {
+            const response = await axios.post(
+                "http://localhost:443/api/v1/auth/signin",
+                {
+                    email: email,
+                    password: password,
+                }
+            );
 
+            console.log("Authentication successful:", response.data);
+        } catch (error) {
+            console.error("Authentication failed:", error.message);
+            alert("Authentication failed. Please check your credentials.");
+        }
     };
 
     return (
         <div className="login-container">
-            <h2>Login</h2>
+            <h2>Log In</h2>
             <form onSubmit={handleSubmit}>
                 <label>Email:</label>
                 <input
@@ -49,7 +63,7 @@ const Login = () => {
 
             <div className="options">
                 <a href="#">Forgot Password?</a>
-                <span> | </span>
+                {/*<span> | </span>*/}
                 <a href="#">Sign Up</a>
             </div>
         </div>
