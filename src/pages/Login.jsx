@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Login.css";
-
+import { Link } from "react-router-dom";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -35,10 +35,13 @@ const Login = () => {
             localStorage.setItem("refresh_token", response.data.refreshToken);
 
             console.log("Authentication successful:", response.data);
+
+
         } catch (error) {
             console.error("Authentication failed:", error.message);
             alert("Authentication failed. Please check your credentials.");
         }
+        window.location.href = "/profile";
     };
 
     return (
