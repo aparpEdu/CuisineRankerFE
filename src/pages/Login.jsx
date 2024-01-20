@@ -5,7 +5,6 @@ import "./Login.css";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     };
@@ -30,6 +29,10 @@ const Login = () => {
                     password: password,
                 }
             );
+
+
+            localStorage.setItem("access_token", response.data.accessToken);
+            localStorage.setItem("refresh_token", response.data.refreshToken);
 
             console.log("Authentication successful:", response.data);
         } catch (error) {
@@ -63,7 +66,6 @@ const Login = () => {
 
             <div className="options">
                 <a href="#">Forgot Password?</a>
-                {/*<span> | </span>*/}
                 <a href="#">Sign Up</a>
             </div>
         </div>
