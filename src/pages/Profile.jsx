@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Profile.css";
 import { Link } from "react-router-dom";
-import GearIcon from "../assets/cogwheel.svg";
+import {ReactComponent as GearIcon} from  "../assets/cogwheel.svg";
 
 const Profile = () => {
     const [level, setLevel] = useState(5);
@@ -71,8 +71,8 @@ const Profile = () => {
                     Sign Out
                 </button>
                 <Link to="/settings">
-                    <div className="gear-icon">
-                        <img src={GearIcon} alt="Gear Icon" />
+                    <div className="gear-icon" style={{ color: '#B4BBCC' }}>
+                        <GearIcon />
                     </div>
                 </Link>
             </div>

@@ -115,8 +115,11 @@
     transition: color 0.3s ease;
 }
 
-.gear-icon img {
+.gear-icon svg {
     width: 100%;
     height: 100%;
+}
+.gear-icon :hover {
+    color: #777a85;
 }
 
