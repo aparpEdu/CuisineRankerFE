@@ -13,10 +13,17 @@ const Profile = () => {
     });
 
     const handleSignOut = () => {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        localStorage.removeItem("user_data")
+        window.location.href = "/";
         console.log("Signing out...");
     };
 
     useEffect(() => {
+        if (!localStorage.getItem("access_token")) {
+            window.location.href = "/";
+        }
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem("access_token");
