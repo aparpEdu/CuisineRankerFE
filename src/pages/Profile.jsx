@@ -12,12 +12,19 @@ const Profile = () => {
         return storedUserData ? JSON.parse(storedUserData) : {};
     });
 
-    const handleSignOut = () => {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
-        localStorage.removeItem("user_data")
-        window.location.href = "/";
-        console.log("Signing out...");
+    const handleSignOut = async () => {
+        try {
+            await axios.post("http://localhost:443/api/v1/auth/signout");
+
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token");
+            localStorage.removeItem("user_data");
+
+            window.location.href = "/";
+            console.log("Signing out...");
+        } catch (error) {
+            console.error("Error signing out:", error);
+        }
     };
 
     useEffect(() => {
