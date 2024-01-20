@@ -3,7 +3,9 @@
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px;
+    color: wheat;
+
 }
 
 form {
@@ -16,6 +18,7 @@ label {
 }
 
 input {
+    border-radius: 12px;
     padding: 8px;
     margin-bottom: 10px;
 }
@@ -25,8 +28,12 @@ button {
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
+}
+
+button:hover {
+    background-color: #032a53;
 }
 
 .options {
@@ -37,7 +44,7 @@ button {
 
 a {
     text-decoration: none;
-    color: #007bff;
+    color: wheat;
     cursor: pointer;
 }
 
