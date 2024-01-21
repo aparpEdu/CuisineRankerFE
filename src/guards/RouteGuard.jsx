@@ -1,11 +1,9 @@
 import { Navigate } from "react-router-dom";
-import useAuth from "../contexts/AuthContext";
 
 
 const RouteGuard = ({children}) => {
-    const { user } = useAuth();
 
-    if (!user.accessToken) {
+    if (!localStorage.getItem("access_token")) {
         return <Navigate to="/" replace />;
     }
     return <>{children}</>;
