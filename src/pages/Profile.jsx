@@ -28,9 +28,6 @@ const Profile = () => {
     };
 
     useEffect(() => {
-        if (!localStorage.getItem("access_token")) {
-            window.location.href = "/";
-        }
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem("access_token");
