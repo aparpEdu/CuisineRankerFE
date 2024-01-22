@@ -1,8 +1,10 @@
 import Layout from "../components/layout/Layout";
 import {createBrowserRouter} from "react-router-dom";
-import Login from "../pages/Login";
-import Profile from "../pages/Profile";
+import Login from "../pages/authentication/Login";
+import Profile from "../pages/profile/Profile";
 import RouteGuard from "../guards/RouteGuard";
+import SignUp from "../pages/authentication/SignUp";
+import SignUpGuard from "../guards/SignUpGuard";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +24,14 @@ export const router = createBrowserRouter([
                 ),
                 path: '/profile',
             },
+            {
+                element: (
+                    <SignUpGuard>
+                        <SignUp />
+                    </SignUpGuard>
+                ),
+                path: "/signup"
+            }
         ],
     },
 ]);
