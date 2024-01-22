@@ -1,9 +1,10 @@
 import Layout from "../components/layout/Layout";
 import {createBrowserRouter} from "react-router-dom";
-// import Home from "../pages/Home";
-// import Projects from "../pages/Projects";
-// import Archive from "../pages/Archive";
-
+import Login from "../pages/authentication/Login";
+import Profile from "../pages/profile/Profile";
+import RouteGuard from "../guards/RouteGuard";
+import SignUp from "../pages/authentication/SignUp";
+import SignUpGuard from "../guards/SignUpGuard";
 
 export const router = createBrowserRouter([
     {
@@ -12,22 +13,25 @@ export const router = createBrowserRouter([
         element: <Layout />,
         children: [
             {
-                // index: true,
-                // element: <Projects/>
+                index: true,
+                element: <Login showHeader={false} />,
+            },
+            {
+                element: (
+                    <RouteGuard>
+                        <Profile />
+                    </RouteGuard>
+                ),
+                path: '/profile',
+            },
+            {
+                element: (
+                    <SignUpGuard>
+                        <SignUp />
+                    </SignUpGuard>
+                ),
+                path: "/signup"
             }
         ],
-        // children: [
-        //     {
-        //         index: true,
-        //         element: <Home />,
-        //         loader: getAllSpecialties,
-        //     },
-        //     {
-        //         path: "/specialists",
-        //         element: <Specialists />,
-        //         loader: getSpecialistData,
-        //         action: getSpecialistsSettings,
-        //     },
-        // ],
     },
 ]);

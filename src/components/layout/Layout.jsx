@@ -2,16 +2,12 @@ import { Outlet } from "react-router-dom";
 import React from "react";
 import Header from "../header/Header";
 
-const Layout = () => {
+const Layout = ({ showHeader = true }) => {
     return (
         <div className="layout-container">
-            {/*<Background />*/}
-            <Header />
-            {/*<NavBar/>*/}
-
+            {/*{showHeader && <Header />}*/}
             <Outlet />
         </div>
-
     );
 };
 
