@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Profile.css";
 import { Link } from "react-router-dom";
-import {ReactComponent as GearIcon} from  "../assets/cogwheel.svg";
+import {ReactComponent as GearIcon} from "../../assets/cogwheel.svg";
 
 const Profile = () => {
     const [level, setLevel] = useState(5);
