@@ -88,6 +88,9 @@ const Signup = () => {
             errors.password = "Password must be at least 8 characters long.";
         }
 
+        if(!matchingPassword.trim()){
+            errors.matchingPassword = "Please enter a matching password"
+        }
 
           if (password !== matchingPassword) {
             errors.matchingPassword = "Passwords do not match.";
