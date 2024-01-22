@@ -33,9 +33,14 @@ button {
 }
 
 button:hover {
-    background-color: #032a53;
+    background-color: #064381;
 }
 
+
+.error {
+    color: #e60000;
+    margin-bottom: 2%;
+}
 .options {
     margin-top: 10px;
     display: flex;
