@@ -5,11 +5,12 @@ import Profile from "../pages/profile/Profile";
 import RouteGuard from "../guards/RouteGuard";
 import SignUp from "../pages/authentication/SignUp";
 import SignUpGuard from "../guards/SignUpGuard";
+import Error from "../pages/error/Error";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        // errorElement: <Error />,
+        errorElement: <Error />,
         element: <Layout />,
         children: [
             {
