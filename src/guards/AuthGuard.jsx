@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 
 
-const SignUpGuard = ({children}) => {
+const AuthGuard = ({children}) => {
 
     if (localStorage.getItem("access_token")) {
         return <Navigate to="/profile" replace />;
@@ -9,4 +9,4 @@ const SignUpGuard = ({children}) => {
     return <>{children}</>;
 };
 
-export default SignUpGuard;
+export default AuthGuard;
