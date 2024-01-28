@@ -6,6 +6,8 @@ import RouteGuard from "../guards/RouteGuard";
 import SignUp from "../pages/authentication/SignUp";
 import AuthGuard from "../guards/AuthGuard";
 import Error from "../pages/error/Error";
+import ConfirmedEmail from "../pages/confirm_email/ConfirmedEmail";
+
 
 export const router = createBrowserRouter([
     {
@@ -36,6 +38,10 @@ export const router = createBrowserRouter([
                     </AuthGuard>
                 ),
                 path: "/signup"
+            },
+            {
+                element: <ConfirmedEmail />,
+                path: "/auth/confirm"
             }
         ],
     },
