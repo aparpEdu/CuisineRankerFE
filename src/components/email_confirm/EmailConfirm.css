@@ -17,11 +17,11 @@
     color: #64ee44;
 }
 
-.success-container a {
-    color: #007bff;
-    text-decoration: underline;
-}
 
-.success-container a:hover {
-    color: #39648a;
+.success-container button {
+    background: #131f24 none;
+    color: #e0ab7d;
+}
+.success-container button:hover {
+    text-decoration: underline;
 }

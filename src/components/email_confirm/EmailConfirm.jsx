@@ -1,6 +1,7 @@
 import "./EmailConfirm.css"
 import React, { useState } from "react";
 import CodeConfirm from "../code_confirm/CodeConfirm";
+
 const EmailConfirm = () => {
     const [showCodeConfirmation, setShowCodeConfirmation] = useState(false);
     const handleShowCodeConfirmation = () => {
@@ -20,8 +21,8 @@ const EmailConfirm = () => {
                     </p>
                     <p>
                         If you encounter any issues or didn't receive the email, you can manually
-                        confirm your account by entering the confirmation code{" "}
-                        <button onClick={handleShowCodeConfirmation}>here</button>.
+                        confirm your account by entering the confirmation code:
+                        <button onClick={handleShowCodeConfirmation}>Click here</button>
                     </p>
                 </>
             )}
