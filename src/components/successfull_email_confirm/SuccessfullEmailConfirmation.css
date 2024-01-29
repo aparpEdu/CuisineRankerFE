@@ -1,0 +1,23 @@
+.container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.container h2 {
+    color: #e0ab7d;
+}
+
+.container p {
+    color: #64ee44;
+}
+
+.container a {
+    display: block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #007bff;
+}
