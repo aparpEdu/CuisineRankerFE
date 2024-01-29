@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./CodeConfirm.css"
+import axios from "axios";
+import {Link} from "react-router-dom";
 const CodeConfirm = () => {
     const [confirmationCode, setConfirmationCode] = useState("");
     const [isCodeConfirmed, setIsCodeConfirmed] = useState(false);
@@ -8,8 +10,13 @@ const CodeConfirm = () => {
         setConfirmationCode(e.target.value);
     };
 
-    const handleConfirmCode = () => {
-        setIsCodeConfirmed(true);
+    const handleConfirmCode = async () => {
+        try {
+            await axios.patch(`http://localhost:443/api/v1/auth/confirm-email?value=${confirmationCode}`);
+            setIsCodeConfirmed(true);
+        } catch (error) {
+            console.error('Error confirming code:', error);
+        }
     };
 
     return (
@@ -18,6 +25,7 @@ const CodeConfirm = () => {
                 <div>
                     <h2>Code Confirmed!</h2>
                     <p>Your account has been successfully confirmed.</p>
+                    <p><Link to={"/"}>Return Home</Link></p>
                 </div>
             ) : (
                 <div>
@@ -32,7 +40,7 @@ const CodeConfirm = () => {
                         value={confirmationCode}
                         onChange={handleConfirmationCodeChange}
                     />
-                    <button onClick={handleConfirmCode}>Confirm Code</button>
+                    <button onClick={handleConfirmCode}>Confirm</button>
                 </div>
             )}
         </div>
