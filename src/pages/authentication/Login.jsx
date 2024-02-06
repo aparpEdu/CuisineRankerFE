@@ -68,7 +68,7 @@ const Login = () => {
             </form>
 
             <div className="options">
-                <a href="#">Forgot Password?</a>
+                <Link to= "/forgot-password">Forgot Password?</Link>
                 <Link to="/signup">Sign Up</Link>
             </div>
         </div>
