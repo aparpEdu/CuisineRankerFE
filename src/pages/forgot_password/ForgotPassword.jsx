@@ -20,7 +20,6 @@ const ForgotPassword  = () => {
             });
             setIsSuccess(true);
         } catch (error) {
-            console.error("Error email:", error.response.data.error);
             setError(error.response.data.email);
             if(!error.response.data.email) {
                 setError(error.response.data.message);
