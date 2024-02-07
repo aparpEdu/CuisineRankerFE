@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     };
@@ -30,18 +31,14 @@ const Login = () => {
                 }
             );
 
-
             localStorage.setItem("access_token", response.data.accessToken);
             localStorage.setItem("refresh_token", response.data.refreshToken);
-
-            console.log("Authentication successful:", response.data);
-
+            window.location.href = "/profile";
 
         } catch (error) {
-            console.error("Authentication failed:", error.message);
-            alert("Authentication failed. Please check your credentials.");
+            setError(error.response.data.message);
         }
-        window.location.href = "/profile";
+
     };
 
     return (
@@ -63,7 +60,7 @@ const Login = () => {
                     value={password}
                     onChange={handlePasswordChange}
                 />
-
+                {error && <p style={{ color: "red" }}>{error}</p>}
                 <button type="submit">Sign In</button>
             </form>
 
