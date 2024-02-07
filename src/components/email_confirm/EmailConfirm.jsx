@@ -20,7 +20,7 @@ const EmailConfirm = () => {
                         If you haven't received an email, please check your spam folder.
                     </p>
                     <p>
-                        If you encounter any issues or didn't receive the email, you can manually
+                        If you encounter any issues or wish to manually confirm your email, you can manually
                         confirm your account by entering the confirmation code:
                         <button onClick={handleShowCodeConfirmation}>Click here</button>
                     </p>
