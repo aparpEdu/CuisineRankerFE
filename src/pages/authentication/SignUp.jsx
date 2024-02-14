@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Login.css";
+import Success from  "../../components/email_confirm/EmailConfirm"
 
 const Signup = () => {
     const [firstName, setFirstName] = useState("");
@@ -10,6 +11,7 @@ const Signup = () => {
     const [password, setPassword] = useState("");
     const [matchingPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({});
+    const [isRegistered, setIsRegistered] = useState(false);
 
     const handleFirstNameChange = (e) => {
         setFirstName(e.target.value);
@@ -52,9 +54,8 @@ const Signup = () => {
                     matchingPassword,
                 }
             );
-
+            setIsRegistered(true);
             console.log("Registration successful:", response.data);
-            window.location.href = "/";
         } catch (error) {
             console.error("Registration failed:", error.message);
             alert("Registration failed. Please check your details.");
@@ -88,6 +89,9 @@ const Signup = () => {
             errors.password = "Password must be at least 8 characters long.";
         }
 
+        if(!matchingPassword.trim()){
+            errors.matchingPassword = "Please enter a matching password"
+        }
 
           if (password !== matchingPassword) {
             errors.matchingPassword = "Passwords do not match.";
@@ -98,7 +102,12 @@ const Signup = () => {
     };
 
     return (
-        <div className="login-container">
+        <>
+
+            {isRegistered ? (
+                <Success />
+            ) : (
+                <div className="login-container">
             <h2>Sign Up</h2>
             <form onSubmit={handleSubmit}>
                 <label>First Name:</label>
@@ -152,7 +161,10 @@ const Signup = () => {
             <div className="options">
                 <Link to="/">Already a registered user? Sign in here.</Link>
             </div>
-        </div>
+                </div>
+
+                )}
+        </>
     );
 };
 
