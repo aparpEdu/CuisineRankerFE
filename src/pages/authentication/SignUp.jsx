@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import Success from  "../../components/email_confirm/EmailConfirm"
-
+import Spinner2 from "../../components/spinner/Spinner2";
 const Signup = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -12,6 +12,7 @@ const Signup = () => {
     const [matchingPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({});
     const [isRegistered, setIsRegistered] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleFirstNameChange = (e) => {
         setFirstName(e.target.value);
@@ -35,10 +36,11 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setIsLoading(true)
 
         const validationErrors = validateInputs();
         if (Object.keys(validationErrors).length > 0) {
+            setIsLoading(false);
             setErrors(validationErrors);
             return;
         }
@@ -161,6 +163,11 @@ const Signup = () => {
             <div className="options">
                 <Link to="/">Already a registered user? Sign in here.</Link>
             </div>
+                    {isLoading && (
+                        <div className="spinner-overlay">
+                            <Spinner2 />
+                        </div>
+                    )}
                 </div>
 
                 )}

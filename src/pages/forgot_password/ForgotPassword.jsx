@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./ForgotPassword.css"
 import {Link} from "react-router-dom";
+import Spinner from "../../components/spinner/Spinner";
+import Spinner2 from "../../components/spinner/Spinner2";
 
 const ForgotPassword  = () => {
     const [email, setEmail] = useState("");
     const [isSuccess, setIsSuccess] = useState(false);
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
 
     const handleEmailChange = (e) => {
@@ -14,12 +17,14 @@ const ForgotPassword  = () => {
     };
 
     const handleInputEmail = async () => {
+        setIsLoading(true);
         try {
             await axios.post(`http://localhost:443/api/v1/auth/forgot-password`, {
                 email: email,
             });
             setIsSuccess(true);
         } catch (error) {
+            setIsLoading(false);
             setError(error.response.data.email);
             if(!error.response.data.email) {
                 setError(error.response.data.message);
@@ -46,6 +51,11 @@ const ForgotPassword  = () => {
                     />
                     {error && <p style={{ color: "red" }}>{error}</p>}
                     <button onClick={handleInputEmail}>Confirm</button>
+                    {isLoading && (
+                        <div className="spinner-overlay">
+                            <Spinner2 />
+                        </div>
+                    )}
                 </div>
             )
 
