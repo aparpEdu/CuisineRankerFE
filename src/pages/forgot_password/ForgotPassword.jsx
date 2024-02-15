@@ -42,7 +42,7 @@ const ForgotPassword  = () => {
             ) : (
                 <div className="container">
                     <h2>Forgot Password</h2>
-                    <p>Please enter the your registered email down below</p>
+                    <p>Please enter your registered email down below</p>
                     <input
                         type="text"
                         placeholder="example@example.com"
