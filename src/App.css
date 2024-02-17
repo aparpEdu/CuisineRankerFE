@@ -18,6 +18,19 @@
 }
 
 
+.logo-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  z-index: 1000; /* Adjust the z-index as needed */
+}
+
+.logo-img {
+  max-width: 44%;
+  max-height: 71%;
+}
+
 .spinner {
   width: 50px;
   height: 50px;
