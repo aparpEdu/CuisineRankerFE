@@ -1,13 +1,14 @@
-import { Outlet } from "react-router-dom";
+import {Outlet, Route} from "react-router-dom";
 import React from "react";
-import Header from "../header/Header";
 import Logo from "../logo/Logo";
+import NavigationBar from "../nav_bar/NavigationBar";
+import RouteGuard from "../../guards/RouteGuard";
 
 const Layout = ({ showHeader = true }) => {
     return (
         <div className="layout-container">
-            {/*{showHeader && <Header />}*/}
             <Logo />
+            <RouteGuard><NavigationBar /></RouteGuard>
             <Outlet />
         </div>
     );

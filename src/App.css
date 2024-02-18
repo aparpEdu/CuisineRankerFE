@@ -23,7 +23,7 @@
   top: 0;
   left: 0;
   padding: 10px;
-  z-index: 1000; /* Adjust the z-index as needed */
+  z-index: 1000;
 }
 
 .logo-img {
@@ -34,4 +34,33 @@
 .spinner {
   width: 50px;
   height: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .logo-container {
+    left: 20%;
+    top: 70%;
+    z-index: 0;
+
+  }
+  .logo-img {
+    max-width: 80%;
+    max-height: 80%;
+  }
+
+  .hamburger-btn {
+
+  }
+
+  .sidebar {
+    z-index: 1000;
+    background-color: #131f24;
+    /*opacity: 0.95;*/
+    top: 40%;
+  }
+
+  .arrow {
+    visibility: hidden;
+  }
+
 }
