@@ -4,6 +4,7 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 20px;
+    position: relative;
     color: wheat;
 
 }
@@ -60,4 +61,22 @@ a:hover {
 
 body{
     margin: 10%;
+}
+
+.spinner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(19, 31, 36, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.spinner {
+    width: 50px;
+    height: 50px;
 }
