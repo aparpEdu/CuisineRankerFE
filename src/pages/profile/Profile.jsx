@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Profile.css";
 import { Link } from "react-router-dom";
 import {ReactComponent as GearIcon} from "../../assets/cogwheel.svg";
+import api from '../../services/api'
 
 const Profile = () => {
     const [level, setLevel] = useState(5);
@@ -34,12 +35,7 @@ const Profile = () => {
                 const headers = {
                     Authorization: `Bearer ${token}`,
                 };
-                const response = await axios.get(
-                    "http://localhost:443/api/v1/users",
-                    {
-                        headers,
-                    }
-                );
+                const response = await api.get('/users');
                 const { name, email } = response.data;
                 const newUserData = { name, email };
 
