@@ -32,11 +32,11 @@ const NavigationBar = () => {
 
             <ul className="nav-items">
                 <li className={`nav-item ${currentPage === "PROFILE" ? "active" : ""}`}>
-                    <Link to={"/profile"} href="#" onClick={() => handlePageClick("PROFILE")}>PROFILE</Link>
+                    <Link to={"/profile"}  onClick={() => handlePageClick("PROFILE")}>PROFILE</Link>
                     {currentPage === "PROFILE" && <span className="arrow"><img src={Star} alt={"star"}/> </span>}
                 </li>
                 <li className={`nav-item ${currentPage === "EXPLORE" ? "active" : ""}`}>
-                    <a href="#" onClick={() => handlePageClick("EXPLORE")}>EXPLORE</a>
+                    <Link  to={"/explore"} onClick={() => handlePageClick("EXPLORE")}>EXPLORE</Link>
                     {currentPage === "EXPLORE" && <span className="arrow"><img src={Star} alt={"star"}/></span>}
                 </li>
                 <li className={`nav-item ${currentPage === "LEADERBOARDS" ? "active" : ""}`}>
