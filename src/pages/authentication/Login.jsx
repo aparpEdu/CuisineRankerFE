@@ -33,7 +33,7 @@ const Login = () => {
 
             localStorage.setItem("access_token", response.data.accessToken);
             localStorage.setItem("refresh_token", response.data.refreshToken);
-            window.location.href = "/profile";
+            window.location.href = "/explore";
 
         } catch (error) {
             setError(error.response.data.message);
