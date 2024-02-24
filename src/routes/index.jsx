@@ -10,6 +10,7 @@ import ConfirmedEmail from "../pages/confirm_email/ConfirmedEmail";
 import ForgotPassword from "../pages/forgot_password/ForgotPassword";
 import ResetPassword from "../pages/reset_password/ResetPassword";
 import Spinner2 from "../components/spinner/Spinner2";
+import Explore from "../pages/explore/Explore";
 
 
 export const router = createBrowserRouter([
@@ -63,8 +64,12 @@ export const router = createBrowserRouter([
                 path: "/auth/reset"
             },
             {
-                element: <Spinner2 />,
-                path: "spin"
+                element:  (
+                    <RouteGuard>
+                        <Explore />
+                    </RouteGuard>
+                ),
+                path: "/explore"
             }
         ],
     },
