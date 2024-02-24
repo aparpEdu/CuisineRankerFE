@@ -16,6 +16,45 @@ const Dashboard = () => {
                 <img src={cookies} alt="Action 3" />
                 <span className="action-text">W.I.P</span>
             </div>
+            <div className="action-item">
+                <img src={cookies} alt="Action 3" />
+                <span className="action-text">W.I.P</span>
+            </div>
+            <div className="action-item">
+                <img src={cookies} alt="Action 3" />
+                <span className="action-text">W.I.P</span>
+            </div>
+            <div className="action-item">
+                <img src={cookies} alt="Action 3" />
+                <span className="action-text">W.I.P</span>
+            </div>
+            <div className="action-item">
+                <img src={cookies} alt="Action 3" />
+                <span className="action-text">W.I.P</span>
+            </div>
+            <div className="action-item">
+                <img src={cookies} alt="Action 3" />
+                <span className="action-text">W.I.P</span>
+            </div>
+            <div className="action-item">
+                <img src={cookies} alt="Action 3" />
+                <span className="action-text">W.I.P</span>
+            </div>
+            <div className="action-item">
+                <img src={cookies} alt="Action 3" />
+                <span className="action-text">W.I.P</span>
+            </div>
+            <div className="action-item">
+                <img src={cookies} alt="Action 3" />
+                <span className="action-text">W.I.P</span>
+            </div>
+            <div className="action-item">
+                <img src={cookies} alt="Action 3" />
+                <span className="action-text">W.I.P</span>
+            </div>
+
+
+
 
         </div>
     );
