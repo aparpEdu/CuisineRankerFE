@@ -7,7 +7,6 @@ const MyRecipes = () => {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
-        // Fetch recipes from the backend API
         const fetchRecipes = async () => {
             try {
                 const response = await api.get('/recipes/personal');
@@ -29,7 +28,7 @@ const MyRecipes = () => {
                         <div className="recipe-name">{recipe.name}</div>
                         <div className="recipe-clock">
                             <img src={clock} alt="Time" className="clock-icon"/>
-                            <span>{recipe.prepTimeInMinutes}</span>
+                            <span>{recipe.totalTime}</span>
                         </div>
                         <div className="recipe-actions">
                             <button className="share-button">Share</button>
