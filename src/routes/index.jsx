@@ -11,6 +11,7 @@ import ForgotPassword from "../pages/forgot_password/ForgotPassword";
 import ResetPassword from "../pages/reset_password/ResetPassword";
 import Spinner2 from "../components/spinner/Spinner2";
 import Explore from "../pages/explore/Explore";
+import MyRecipes from "../pages/explore/my_recipes/MyRecipes";
 
 
 export const router = createBrowserRouter([
@@ -70,6 +71,14 @@ export const router = createBrowserRouter([
                     </RouteGuard>
                 ),
                 path: "/explore"
+            },
+            {
+                element: (
+                    <RouteGuard>
+                        <MyRecipes />
+                    </RouteGuard>
+                ),
+                path: "/recipes"
             }
         ],
     },
