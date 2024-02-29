@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import "./MyRecipes.css"
 import api from '../../../services/api'
 import clock from "../../../assets/clock.svg"
+import AddRecipe from "../../../components/add_recipe/AddRecipe";
 
 const MyRecipes = () => {
     const [recipes, setRecipes] = useState([]);
@@ -20,7 +21,13 @@ const MyRecipes = () => {
     }, []);
 
     return (
+        <div>
+            <div className="my-recipes-title">
+                <h2>My Recipes</h2>
+                <div className="title-line"></div>
+            </div>
         <div className="recipe-container">
+            <AddRecipe />
             {recipes.map(recipe => (
                 <div key={recipe.id} className="recipe-square">
                     <img src={recipe.pictureURL} alt={recipe.name} className="recipe-image" />
@@ -37,6 +44,7 @@ const MyRecipes = () => {
                     </div>
                 </div>
             ))}
+        </div>
         </div>
     );
 }
