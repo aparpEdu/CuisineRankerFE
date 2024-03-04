@@ -55,12 +55,13 @@
   .sidebar {
     z-index: 1000;
     background-color: #131f24;
-    /*opacity: 0.95;*/
     top: 40%;
   }
 
   .arrow {
     visibility: hidden;
   }
+
+
 
 }
