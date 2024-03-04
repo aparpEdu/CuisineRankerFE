@@ -3,16 +3,16 @@ import "./NavigationBar.css"
 import Star from "../../assets/star.svg"
 import {Link} from "react-router-dom";
 
-const NavigationBar = () => {
-    const [currentPage, setCurrentPage] = useState("PROFILE");
+const NavigationBar = ({currentPage, onChange}) => {
     const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 768);
 
+
     const handlePageClick = (page) => {
-        setCurrentPage(page);
+        onChange(page);
 
         if (window.innerWidth <= 768) {
             setSidebarOpen(false);
-            setCurrentPage("none")
+            onChange("none")
         }
     };
 
@@ -67,3 +67,4 @@ const NavigationBar = () => {
 
 
 export default NavigationBar;
+

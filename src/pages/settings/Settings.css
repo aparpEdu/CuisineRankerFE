@@ -1,0 +1,94 @@
+.settings-container {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: inline;
+    padding-right: 20px;
+}
+
+input{
+    padding: 10px;
+    color: white;
+    background-color: #1b2e35;
+    border: 1px solid #FFA2A2FF;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.button-save {
+    background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%);
+    text-align: center;
+    text-transform: uppercase;
+    background-size: 200% auto;
+    color: white;
+    width: fit-content;
+    border-radius: 10px;
+    display: block;
+    margin-left: 35%;
+}
+
+.button-save:hover {
+    background-image: linear-gradient(to right, #1b8862 0%, #7dd3a1 51%, #187c5b 100%);
+}
+.button-save:disabled {
+    background-image: linear-gradient(to right, #5b5757 0%, #5e5f64 51%, #c7ccd7 100%);
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: none;
+    transition: 0.5s;
+    background-size: 200% auto;
+    cursor: initial;
+    color: silver;
+    border-radius: 10px;
+    display: block;
+}
+
+.button-save:disabled:hover {
+    background-color: #777a85;
+}
+
+.page-title {
+    top: 0;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.page-title h2 {
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 1px;
+    border-bottom: 2px solid #FFA2A2FF;
+}
+
+.error-success {
+  padding: 0;
+  margin-left: 40%;
+
+}
+
+@media screen and (max-width: 768px) {
+    .settings-container {
+        flex-direction: column;
+    }
+
+    .settings-container form {
+        order: 1;
+    }
+}

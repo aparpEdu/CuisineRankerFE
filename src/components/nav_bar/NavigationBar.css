@@ -20,7 +20,7 @@
 
     transform: translateX(0);
 }
-.hamburger-btn {
+.hamburger-btn{
     position: fixed;
     top: 20px;
     left: 20px;
@@ -79,13 +79,42 @@
     text-decoration: none;
 }
 
+.nav-items-settings {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.sidebar-settings {
+    color: #d4b063;
+    border-left: 1px solid #FFA2A2FF;
+    border-right: 1px solid #FFA2A2FF;
+    border-top: 1px solid #FFA2A2FF;
+    border-bottom: 1px solid #FFA2A2FF;
+    border-radius: 12px;
+    padding: 1rem 2rem;
+}
+
+
+
+
 @media screen and (max-width: 768px) {
     .sidebar {
-        width: 40%; /* Adjust the width as needed */
+        width: 40%;
         top: 3%;
         border-radius: 10px;
         border: none;
 
+    }
+
+    .sidebar-settings {
+        height: 1%;
+        border: none;
+    }
+
+    .nav-items-settings {
+        display: flex;
     }
     .nav-item {
         padding: 10px;
