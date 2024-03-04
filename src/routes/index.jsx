@@ -12,6 +12,7 @@ import ResetPassword from "../pages/reset_password/ResetPassword";
 import Spinner2 from "../components/spinner/Spinner2";
 import Explore from "../pages/explore/Explore";
 import MyRecipes from "../pages/explore/my_recipes/MyRecipes";
+import Settings from "../pages/settings/Settings";
 
 
 export const router = createBrowserRouter([
@@ -79,6 +80,14 @@ export const router = createBrowserRouter([
                     </RouteGuard>
                 ),
                 path: "/recipes"
+            },
+            {
+                element: (
+                    <RouteGuard>
+                    <Settings />
+                    </RouteGuard>
+                ),
+                path: "/settings"
             }
         ],
     },
