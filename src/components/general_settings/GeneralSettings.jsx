@@ -104,8 +104,9 @@ const GeneralSettings = () => {
       <div>
           <form onSubmit={handleSubmit}>
               <div className="form-group">
-                  <label htmlFor="firstName">First Name:</label>
+                  <label className={"settings-label"} htmlFor="firstName">First Name:</label>
                   <input
+                      className={"settings-input"}
                       type="text"
                       id="firstName"
                       value={firstName}
@@ -115,8 +116,9 @@ const GeneralSettings = () => {
               </div>
               {errors.firstName && <span className="error">{errors.firstName}</span>}
               <div className="form-group">
-                  <label htmlFor="lastName">Last Name:</label>
+                  <label className={"settings-label"}  htmlFor="lastName">Last Name:</label>
                   <input
+                      className={"settings-input"}
                       type="text"
                       id="lastName"
                       value={lastName}

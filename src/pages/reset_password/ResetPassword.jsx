@@ -12,6 +12,7 @@ const ResetPassword  = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const value = searchParams.get('value');
+    const [error, setError] = useState("");
 
 
     const handleNewPasswordChange = (e) => {
@@ -44,7 +45,7 @@ const ResetPassword  = () => {
             setIsSuccess(true);
 
         } catch (error) {
-            console.error("ERROR: ", error.message);
+            setError(error.response.data.message);
         }
 
     };
@@ -99,6 +100,7 @@ const ResetPassword  = () => {
             {errors.matchingPassword && <span className="error">{errors.matchingPassword}</span>}
 
             <button type="submit">Change Password</button>
+                {error && <p style={{ color: "red" }}>{error}</p>}
             </form>
         </div>
             )
