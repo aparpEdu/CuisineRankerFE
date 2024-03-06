@@ -9,14 +9,19 @@
 
 .form-group {
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
 }
 
-label {
-    display: inline;
-    padding-right: 20px;
+.settings-label {
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+    margin-right: 20px;
 }
 
-input{
+.settings-input{
+    flex: 1;
     padding: 10px;
     color: white;
     background-color: #1b2e35;
@@ -38,8 +43,9 @@ button[type="submit"]:hover {
     color: white;
     width: fit-content;
     border-radius: 10px;
-    display: block;
-    margin-left: 35%;
+    display: inline-block;
+    margin-left: 180px;
+
 }
 
 .button-save:hover {
@@ -75,6 +81,12 @@ button[type="submit"]:hover {
     display: inline-block;
     padding-bottom: 1px;
     border-bottom: 2px solid #FFA2A2FF;
+}
+
+.error {
+    display: block;
+    margin-left: 170px;
+    color: red;
 }
 
 .error-success {

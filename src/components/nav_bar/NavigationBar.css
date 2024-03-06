@@ -88,14 +88,16 @@
 
 .sidebar-settings {
     color: #d4b063;
-    border-left: 1px solid #FFA2A2FF;
-    border-right: 1px solid #FFA2A2FF;
-    border-top: 1px solid #FFA2A2FF;
-    border-bottom: 1px solid #FFA2A2FF;
+    position: fixed;
+    top: 280px;
+    left: 66%;
+    transform: translateX(-50%);
+    width: 10%;
+    height: fit-content;
     border-radius: 12px;
     padding: 1rem 2rem;
+    z-index: 1000;
 }
-
 
 
 
@@ -111,6 +113,8 @@
     .sidebar-settings {
         height: 1%;
         border: none;
+        top: 40%;
+        left: 30%;
     }
 
     .nav-items-settings {

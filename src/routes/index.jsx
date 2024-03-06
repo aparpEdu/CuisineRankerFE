@@ -61,7 +61,7 @@ export const router = createBrowserRouter([
                 element: (
                     <AuthGuard>
                         <ResetPassword />
-                    </AuthGuard>
+                     </AuthGuard>
                 ),
                 path: "/auth/reset"
             },
