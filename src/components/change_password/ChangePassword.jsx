@@ -31,7 +31,11 @@ const ChangePassword = () => {
             setSuccess("Saved changes");
         } catch (e) {
             setIsLoading(false);
+            if (e.response.data.message.length > 50) {
+                setError("Internal Server Error");
+            } else {
             setError(e.response.data.message);
+            }
         }
     };
 
@@ -100,7 +104,7 @@ const ChangePassword = () => {
                     />
                 </div>
                 {errors.matchingPassword && <span className="error">{errors.matchingPassword}</span>}
-                {error && <p style={{ color: "red" }}>{error}</p>}
+                {error && <p className="error" >{error}</p>}
                 {success && <p style={{ color: "lime" }} className="error-success">{success}</p>}
                 <button type="submit" className="button-save">SAVE CHANGES</button>
                 {isLoading && (
