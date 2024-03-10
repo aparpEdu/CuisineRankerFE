@@ -3,16 +3,16 @@ import "./NavigationBar.css"
 import Star from "../../assets/star.svg"
 import {Link} from "react-router-dom";
 
-const NavigationBar = () => {
-    const [currentPage, setCurrentPage] = useState("PROFILE");
+const NavigationBar = ({currentPage, onChange}) => {
     const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 768);
 
+
     const handlePageClick = (page) => {
-        setCurrentPage(page);
+        onChange(page);
 
         if (window.innerWidth <= 768) {
             setSidebarOpen(false);
-            setCurrentPage("none")
+            onChange("none")
         }
     };
 
@@ -32,11 +32,11 @@ const NavigationBar = () => {
 
             <ul className="nav-items">
                 <li className={`nav-item ${currentPage === "PROFILE" ? "active" : ""}`}>
-                    <Link to={"/profile"} href="#" onClick={() => handlePageClick("PROFILE")}>PROFILE</Link>
+                    <Link to={"/profile"}  onClick={() => handlePageClick("PROFILE")}>PROFILE</Link>
                     {currentPage === "PROFILE" && <span className="arrow"><img src={Star} alt={"star"}/> </span>}
                 </li>
                 <li className={`nav-item ${currentPage === "EXPLORE" ? "active" : ""}`}>
-                    <a href="#" onClick={() => handlePageClick("EXPLORE")}>EXPLORE</a>
+                    <Link  to={"/explore"} onClick={() => handlePageClick("EXPLORE")}>EXPLORE</Link>
                     {currentPage === "EXPLORE" && <span className="arrow"><img src={Star} alt={"star"}/></span>}
                 </li>
                 <li className={`nav-item ${currentPage === "LEADERBOARDS" ? "active" : ""}`}>
@@ -67,3 +67,4 @@ const NavigationBar = () => {
 
 
 export default NavigationBar;
+

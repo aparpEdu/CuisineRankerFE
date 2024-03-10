@@ -10,6 +10,9 @@ import ConfirmedEmail from "../pages/confirm_email/ConfirmedEmail";
 import ForgotPassword from "../pages/forgot_password/ForgotPassword";
 import ResetPassword from "../pages/reset_password/ResetPassword";
 import Spinner2 from "../components/spinner/Spinner2";
+import Explore from "../pages/explore/Explore";
+import MyRecipes from "../pages/explore/my_recipes/MyRecipes";
+import Settings from "../pages/settings/Settings";
 
 
 export const router = createBrowserRouter([
@@ -58,13 +61,33 @@ export const router = createBrowserRouter([
                 element: (
                     <AuthGuard>
                         <ResetPassword />
-                    </AuthGuard>
+                     </AuthGuard>
                 ),
                 path: "/auth/reset"
             },
             {
-                element: <Spinner2 />,
-                path: "spin"
+                element:  (
+                    <RouteGuard>
+                        <Explore />
+                    </RouteGuard>
+                ),
+                path: "/explore"
+            },
+            {
+                element: (
+                    <RouteGuard>
+                        <MyRecipes />
+                    </RouteGuard>
+                ),
+                path: "/recipes"
+            },
+            {
+                element: (
+                    <RouteGuard>
+                    <Settings />
+                    </RouteGuard>
+                ),
+                path: "/settings"
             }
         ],
     },
