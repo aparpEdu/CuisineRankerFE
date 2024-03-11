@@ -18,7 +18,19 @@ const MyRecipes = () => {
         };
 
         fetchRecipes();
-    }, []);
+    }, [])
+
+    const handleDelete = async (id) => {
+        const confirmDelete = window.confirm("Are you sure you want to remove this recipe?");
+        if (confirmDelete) {
+            try {
+                await api.delete(`/recipes/personal?id=${id}`);
+                setRecipes(recipes.filter(recipe => recipe.id !== id));
+            } catch (error) {
+                console.error('Error deleting recipe:', error);
+            }
+        }
+    }
 
     return (
         <div>
@@ -39,7 +51,7 @@ const MyRecipes = () => {
                         </div>
                         <div className="recipe-actions">
                             <button className="share-button">Share</button>
-                            <button className="remove-button">Remove</button>
+                            <button className="remove-button" onClick={() => handleDelete(recipe.id)}>Remove</button>
                         </div>
                     </div>
                 </div>
