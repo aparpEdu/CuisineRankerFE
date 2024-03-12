@@ -56,7 +56,7 @@ const NavigationBar = ({currentPage, onChange}) => {
                     {currentPage === "F.A.Q" && <span className="arrow"><img src={Star} alt={"star"}/></span>}
                 </li>
                 <li className={`nav-item ${currentPage === "CONTACT US" ? "active" : ""}`}>
-                    <a href="#" onClick={() => handlePageClick("CONTACT US")}>CONTACT</a>
+                    <Link to={"/contact"} onClick={() => handlePageClick("CONTACT US")}>CONTACT</Link>
                     {currentPage === "CONTACT US" && <span className="arrow"><img src={Star} alt={"star"}/></span>}
                 </li>
             </ul>
