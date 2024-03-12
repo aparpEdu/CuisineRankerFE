@@ -13,6 +13,7 @@ import Spinner2 from "../components/spinner/Spinner2";
 import Explore from "../pages/explore/Explore";
 import MyRecipes from "../pages/explore/my_recipes/MyRecipes";
 import Settings from "../pages/settings/Settings";
+import Contact from "../pages/contact/Contact";
 
 
 export const router = createBrowserRouter([
@@ -88,6 +89,10 @@ export const router = createBrowserRouter([
                     </RouteGuard>
                 ),
                 path: "/settings"
+            },
+            {
+                element: <Contact />,
+                path: "/contact"
             }
         ],
     },
