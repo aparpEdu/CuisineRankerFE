@@ -41,7 +41,7 @@ const SettingsNavBar = ({ setOpenedTab }) => {
                         )}
                     </li>
                     <li className={`nav-item ${currentPage === "Email" ? "active" : ""}`}>
-                        <Link to={"/explore"} onClick={() => handlePageClick("Email")}>
+                        <Link to={"#"} onClick={() => handlePageClick("Email")}>
                             Email
                         </Link>
                         {currentPage === "Email" && (
