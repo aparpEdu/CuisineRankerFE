@@ -14,6 +14,7 @@ import Explore from "../pages/explore/Explore";
 import MyRecipes from "../pages/explore/my_recipes/MyRecipes";
 import Settings from "../pages/settings/Settings";
 import Contact from "../pages/contact/Contact";
+import ConfirmChangeEmail from "../pages/confirm_change_email/ConfirmChangeEmail";
 
 
 export const router = createBrowserRouter([
@@ -91,8 +92,20 @@ export const router = createBrowserRouter([
                 path: "/settings"
             },
             {
-                element: <Contact />,
+                element: (
+                    <RouteGuard>
+                    <Contact />
+                    </RouteGuard>
+                ),
                 path: "/contact"
+            },
+            {
+                element: (
+                    <RouteGuard>
+                        <ConfirmChangeEmail />
+                    </RouteGuard>
+                ),
+                path: "/auth/change-email"
             }
         ],
     },
