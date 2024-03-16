@@ -21,13 +21,13 @@
 }
 
 .settings-input{
-    flex: 1;
     padding: 10px;
     color: white;
     background-color: #1b2e35;
     border: 1px solid #FFA2A2FF;
     border-radius: 12px;
     font-size: 16px;
+    width: 200px;
 }
 
 
@@ -71,6 +71,7 @@ button[type="submit"]:hover {
 .page-title {
     top: 0;
     text-align: center;
+    margin-left: 160px;
     margin-top: 10%;
 }
 
@@ -93,6 +94,9 @@ button[type="submit"]:hover {
   padding: 0;
   margin-left: 50%;
 
+}
+.success-email {
+    margin-left: 30%;
 }
 
 @media screen and (max-width: 768px) {
