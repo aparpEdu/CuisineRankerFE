@@ -61,9 +61,8 @@ const Login = () => {
 
     const handleTokenSubmit = async (e) => {
         e.preventDefault();
-        setIsLoading(true);
         try {
-            await axios.patch(
+          const response =  await axios.patch(
                 "http://localhost:443/api/v1/auth/two-factor/confirm",
                 {
                     token: token
@@ -74,12 +73,14 @@ const Login = () => {
                     }
                 }
             );
+            if (response) {
+                setError(response.data.token);
+            }
             localStorage.setItem("access_token", accessToken);
             localStorage.setItem("refresh_token", refreshToken);
             window.location.href = "/explore";
         } catch (error) {
-            setIsLoading(false);
-            setError(error.response.data.message);
+            setError("Please input a valid token");
         }
     }
 
