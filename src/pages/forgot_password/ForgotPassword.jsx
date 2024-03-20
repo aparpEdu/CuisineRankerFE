@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./ForgotPassword.css"
 import {Link} from "react-router-dom";
-import Spinner from "../../components/spinner/Spinner";
 import Spinner2 from "../../components/spinner/Spinner2";
 
 const ForgotPassword  = () => {

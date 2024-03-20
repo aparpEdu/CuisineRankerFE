@@ -50,6 +50,16 @@ const SettingsNavBar = ({ setOpenedTab }) => {
               </span>
                         )}
                     </li>
+                    <li className={`nav-item ${currentPage === "Advanced" ? "active" : ""}`}>
+                        <Link to={"#"} onClick={() => handlePageClick("Advanced")}>
+                            Advanced
+                        </Link>
+                        {currentPage === "Advanced" && (
+                            <span className="arrow">
+                <img src={Star} alt={"star"} />
+              </span>
+                        )}
+                    </li>
                 </ul>
             </nav>
         </>
