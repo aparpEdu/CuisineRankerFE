@@ -36,6 +36,11 @@
     object-fit: cover;
 }
 
+.profile-picture img:hover {
+    filter: brightness(70%);
+    cursor: pointer;
+}
+
 .level-circle {
     position: absolute;
     bottom: -10px;
