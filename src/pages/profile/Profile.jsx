@@ -32,8 +32,8 @@ const Profile = () => {
         const fetchData = async () => {
             try {
                 const response = await api.get('/users');
-                const { name, email } = response.data;
-                const newUserData = { name, email };
+                const { name, email, profilePicURL } = response.data;
+                const newUserData = { name, email, profilePicURL };
 
 
                 setUserData(newUserData);
@@ -52,6 +52,7 @@ const Profile = () => {
             <div className="profile-section">
                 <div className="profile-picture-container">
                     <div className="profile-picture">
+                        <img src={userData.profilePicURL}  alt={"Profile Picture image"}></img>
                         <div className="level-circle">{level}</div>
                     </div>
                 </div>
