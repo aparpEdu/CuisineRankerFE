@@ -1,0 +1,62 @@
+.profile-picture-selection {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #131f24;
+    opacity: 0.9;
+    border: 1px solid #d2af62;
+    border-radius: 12px;
+    padding: 20px;
+    z-index: 999;
+}
+
+.profile-picture-selection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #d2af62;
+    font-size: 1.2rem;
+}
+
+
+
+.profile-picture-selection-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #d2af62;
+}
+
+.profile-pics-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-pic img:hover {
+    filter: brightness(70%);
+}
+
+.profile-pic.selected {
+    border: 4px solid #ffca05;
+}
