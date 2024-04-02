@@ -24,7 +24,7 @@ const MyRecipes = () => {
         const confirmDelete = window.confirm("Are you sure you want to remove this recipe?");
         if (confirmDelete) {
             try {
-                await api.delete(`/recipes/personal?id=${id}`);
+                await api.delete(`/recipes/personal/${id}`);
                 setRecipes(recipes.filter(recipe => recipe.id !== id));
             } catch (error) {
                 console.error('Error deleting recipe:', error);
