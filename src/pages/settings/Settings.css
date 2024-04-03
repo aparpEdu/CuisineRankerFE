@@ -21,13 +21,13 @@
 }
 
 .settings-input{
-    flex: 1;
     padding: 10px;
     color: white;
     background-color: #1b2e35;
     border: 1px solid #FFA2A2FF;
     border-radius: 12px;
     font-size: 16px;
+    width: 200px;
 }
 
 
@@ -71,6 +71,7 @@ button[type="submit"]:hover {
 .page-title {
     top: 0;
     text-align: center;
+    margin-left: 160px;
     margin-top: 10%;
 }
 
@@ -94,7 +95,80 @@ button[type="submit"]:hover {
   margin-left: 50%;
 
 }
+.success-email {
+    margin-left: 30%;
+}
 
+.switch {
+    margin-left: 10px;
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+
+.switch input {
+    margin-left: 15px;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.error-switch {
+    display: block;
+    color: red;
+}
+input:checked + .slider {
+    background-color: #ffa2a2;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #ffa2a2;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.switch input:disabled + .slider {
+    filter: brightness(50%);
+}
+
+.switch input:disabled + .slider:before {
+    filter: brightness(50%);
+}
+.switch-label {
+    font-size: 20px;
+}
 @media screen and (max-width: 768px) {
     .settings-container {
         flex-direction: column;

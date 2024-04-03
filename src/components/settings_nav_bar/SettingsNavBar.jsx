@@ -41,10 +41,20 @@ const SettingsNavBar = ({ setOpenedTab }) => {
                         )}
                     </li>
                     <li className={`nav-item ${currentPage === "Email" ? "active" : ""}`}>
-                        <Link to={"/explore"} onClick={() => handlePageClick("Email")}>
+                        <Link to={"#"} onClick={() => handlePageClick("Email")}>
                             Email
                         </Link>
                         {currentPage === "Email" && (
+                            <span className="arrow">
+                <img src={Star} alt={"star"} />
+              </span>
+                        )}
+                    </li>
+                    <li className={`nav-item ${currentPage === "Advanced" ? "active" : ""}`}>
+                        <Link to={"#"} onClick={() => handlePageClick("Advanced")}>
+                            Advanced
+                        </Link>
+                        {currentPage === "Advanced" && (
                             <span className="arrow">
                 <img src={Star} alt={"star"} />
               </span>
