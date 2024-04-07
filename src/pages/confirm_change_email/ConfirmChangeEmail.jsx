@@ -8,7 +8,7 @@ const ConfirmChangeEmail = () => {
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const location = useLocation();
-    const value = new URLSearchParams(location.search).get('value'); // Get value directly
+    const value = new URLSearchParams(location.search).get('value');
 
     useEffect(() => {
         const changeEmail = async () => {
@@ -31,7 +31,6 @@ const ConfirmChangeEmail = () => {
             }
         };
 
-        // Call changeEmail only when the component mounts
         changeEmail();
     }, [value]);
 
