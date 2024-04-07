@@ -3,7 +3,7 @@ import api from "../../services/api";
 import Spinner2 from "../spinner/Spinner2";
 
 
-const ChangeEmail = () =>{
+const EmailSettings = () =>{
     const [oldEmail, setOldEmail] = useState("");
     const [newEmail, setNewEmail] = useState("");
     const [error, setError] = useState("");
@@ -161,4 +161,4 @@ const ChangeEmail = () =>{
         </div>
     );
 };
-export default ChangeEmail;
+export default EmailSettings;
