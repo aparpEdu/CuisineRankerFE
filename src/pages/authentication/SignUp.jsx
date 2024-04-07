@@ -107,7 +107,7 @@ const Signup = () => {
         <>
 
             {isRegistered ? (
-                <Success />
+                <Success email={email} />
             ) : (
                 <div className="login-container">
             <h2>Sign Up</h2>
