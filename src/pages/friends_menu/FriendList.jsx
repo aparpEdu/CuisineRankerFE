@@ -9,14 +9,14 @@ const FriendList = () => {
 
     useEffect(() => {
         fetchFriends();
-    }, []);
+    },  [searchTerm]);
 
     const fetchFriends = async () => {
         try {
             const response = await api.get('users/friends');
             const friendsData = response.data.friendships;
             setFriends(friendsData);
-            setFilteredFriends(friendsData);
+            filterFriends(friendsData);
         } catch (error) {
             console.error('Error fetching friends:', error);
         }
@@ -25,8 +25,12 @@ const FriendList = () => {
     const handleSearch = (e) => {
         const term = e.target.value;
         setSearchTerm(term);
-        const filtered = friends.filter((friend) =>
-            friend.friendName.toLowerCase().includes(term.toLowerCase())
+    };
+
+
+    const filterFriends = (data) => {
+        const filtered = data.filter((friend) =>
+            friend.friendName.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredFriends(filtered);
     };
@@ -72,7 +76,7 @@ const FriendList = () => {
                         </div>
                         <div className="friend-details">
                             <p>{friend.friendName}</p>
-                            <p>Friends Since: {friend.updatedAtFormatted}</p>
+                            <p style={{color:"cornsilk"}}>Friends since: {friend.updatedAtFormatted}</p>
                         </div>
                         <div className="action-buttons">
                             <button onClick={() => handleRemoveFriend(friend.id)}>
