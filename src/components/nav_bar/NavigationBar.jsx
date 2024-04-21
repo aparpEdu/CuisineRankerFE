@@ -39,15 +39,15 @@ const NavigationBar = ({currentPage, onChange}) => {
                     <Link to={"/profile"}  onClick={() => handlePageClick("PROFILE")}>PROFILE</Link>
                     {currentPage === "PROFILE" && <span className="arrow"><img src={Star} alt={"star"}/> </span>}
                 </li>
-
+                <li className={`nav-item ${currentPage === "FRIENDS" ? "active" : ""}`}>
+                    <Link to={"/friends"} onClick={() => handlePageClick("FRIENDS")}>FRIENDS</Link>
+                    {currentPage === "FRIENDS" && <span className="arrow"><img src={Star} alt={"star"}/></span>}
+                </li>
                 {/*<li className={`nav-item ${currentPage === "LEADERBOARDS" ? "active" : ""}`}>*/}
                 {/*    <a href="#" onClick={() => handlePageClick("LEADERBOARDS")}>RANKING</a>*/}
                 {/*    {currentPage === "LEADERBOARDS" && <span className="arrow"><img src={Star} alt={"star"}/></span>}*/}
                 {/*</li>*/}
-                {/*<li className={`nav-item ${currentPage === "FRIENDS" ? "active" : ""}`}>*/}
-                {/*    <a href="#" onClick={() => handlePageClick("FRIENDS")}>FRIENDS</a>*/}
-                {/*    {currentPage === "FRIENDS" && <span className="arrow"><img src={Star} alt={"star"}/></span>}*/}
-                {/*</li>*/}
+
                 {/*<li  className={`nav-item ${currentPage === "SHOP" ? "active" : ""}`}>*/}
                 {/*    <a href="#" onClick={() => handlePageClick("SHOP")}>SHOP</a>*/}
                 {/*    {currentPage === "SHOP" && <span className="arrow"><img src={Star} alt={"star"}/></span>}*/}
