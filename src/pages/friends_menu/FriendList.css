@@ -9,6 +9,14 @@
     width: max-content;
     height: fit-content;
     margin-right: 10px;
+    transition: width 0.3s, height 0.3s;
+}
+
+.friend-container:hover {
+    width: 210px;
+    height: 210px;
+    filter: brightness(90%);
+    cursor: pointer;
 }
 
 .profile-pic {
@@ -17,6 +25,7 @@
     border-radius: 50%;
     overflow: hidden;
     margin-right: 10px;
+    transition: width 0.3s, height 0.3s;
 }
 
 .profile-pic img {
@@ -27,7 +36,19 @@
 
 .friend-details p {
     margin: 0;
+    transition: opacity 0.3s;
 }
+
+.friend-details {
+    flex: 1;
+}
+
+
+.friend-container:hover .profile-pic {
+    width: 110px;
+    height: 110px; 
+}
+
 
 .action-buttons {
     display: flex;
@@ -37,13 +58,12 @@
 .action-buttons button {
     margin-top: 5px;
     background-color: #cc0303;
-    padding: 7px;
+    padding: 5px;
 }
 
 .action-buttons button:hover {
     filter: brightness(80%);
 }
-
 
 .friend-menu {
     margin-top: 20px;
@@ -54,6 +74,10 @@
     display: flex;
     flex-wrap: wrap;
 
+}
+
+.friend-container:hover .friend-details p {
+    opacity: 0.5;
 }
 
 .friends-top {
