@@ -9,12 +9,12 @@ import Error from "../pages/error/Error";
 import ConfirmedEmail from "../pages/confirm_email/ConfirmedEmail";
 import ForgotPassword from "../pages/forgot_password/ForgotPassword";
 import ResetPassword from "../pages/reset_password/ResetPassword";
-import Spinner2 from "../components/spinner/Spinner2";
 import Explore from "../pages/explore/Explore";
 import MyRecipes from "../pages/explore/my_recipes/MyRecipes";
 import Settings from "../pages/settings/Settings";
 import Contact from "../pages/contact/Contact";
 import ConfirmChangeEmail from "../pages/confirm_change_email/ConfirmChangeEmail";
+import FriendList from "../pages/friends_menu/FriendList";
 
 
 export const router = createBrowserRouter([
@@ -106,6 +106,14 @@ export const router = createBrowserRouter([
                     </RouteGuard>
                 ),
                 path: "/auth/change-email"
+            },
+            {
+                element: (
+                    <RouteGuard>
+                        <FriendList />
+                    </RouteGuard>
+                ),
+                path: "/friends",
             }
         ],
     },
