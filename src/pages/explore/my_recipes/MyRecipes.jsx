@@ -2,10 +2,13 @@ import React, {useEffect, useState} from 'react';
 import "./MyRecipes.css"
 import api from '../../../services/api'
 import clock from "../../../assets/clock.svg"
+import AddRecipeButton from "../../../components/add_recipe/AddRecipeButton";
 import AddRecipe from "../../../components/add_recipe/AddRecipe";
 
 const MyRecipes = () => {
     const [recipes, setRecipes] = useState([]);
+    const [showAddRecipeWindow, setShowAddRecipeWindow] = useState(false);
+
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -32,14 +35,28 @@ const MyRecipes = () => {
         }
     }
 
+    const handleCloseAddRecipeWindow = () => {
+        setShowAddRecipeWindow(false);
+    }
+
+    const handleOpenAddRecipeWindow = () => {
+        setShowAddRecipeWindow(true);
+        console.log("triggered showAddRecipeWindow", showAddRecipeWindow);
+    }
+
+
+
     return (
         <div>
             <div className="my-recipes-title">
                 <h2>My Recipes</h2>
                 <div className="title-line"></div>
             </div>
+            {showAddRecipeWindow && (
+                <AddRecipe onClose={handleCloseAddRecipeWindow} />
+            )}
         <div className="recipe-container">
-            <AddRecipe />
+            <div onClick={handleOpenAddRecipeWindow}><AddRecipeButton /></div>
             {recipes.map(recipe => (
                 <div key={recipe.id} className="recipe-square">
                     <img src={recipe.pictureURL} alt={recipe.name} className="recipe-image" />
@@ -57,6 +74,7 @@ const MyRecipes = () => {
                 </div>
             ))}
         </div>
+
         </div>
     );
 }
