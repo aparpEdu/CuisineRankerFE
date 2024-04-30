@@ -1,11 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import api from "../../services/api";
-import "./AddRecipe.css"
+import "./AddRecipe.css";
 import Spinner from "../../components/spinner/Spinner2";
 
-
-
-const AddRecipe = ({onClose}) => {
+const AddRecipe = ({ onClose }) => {
     const [name, setName] = useState('');
     const [preparation, setPreparation] = useState('');
     const [picture, setPicture] = useState(null);
@@ -16,9 +14,6 @@ const AddRecipe = ({onClose}) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState({});
-
-
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,7 +30,6 @@ const AddRecipe = ({onClose}) => {
         };
         fetchData();
     }, [searchQuery]);
-
 
     const validateInputs = () => {
         const errors = {};
@@ -66,7 +60,6 @@ const AddRecipe = ({onClose}) => {
             errors.ingredients = "Please select at least one ingredient for the recipe.";
         }
 
-
         if (!picture) {
             errors.picture = "Please upload a picture for the recipe.";
         } else {
@@ -82,15 +75,14 @@ const AddRecipe = ({onClose}) => {
         setErrors(errors);
 
         return errors;
-    }
-
+    };
 
     const handleAddIngredient = (ingredientObject) => {
         const { id, name, defaultAmount, amountType } = ingredientObject;
         setIngredients(prevState => ({ ...prevState, [id]: { name, amount: defaultAmount, amountType } }));
         setSearchResults(prevResults => prevResults.filter(ingredient => ingredient.id !== id));
         setSearchQuery('');
-    }
+    };
 
     const handleRemoveIngredient = (id) => {
         const removedIngredient = ingredients[id];
@@ -100,7 +92,7 @@ const AddRecipe = ({onClose}) => {
             return updatedIngredients;
         });
         setSearchResults(prevResults => [...prevResults, { id, name: removedIngredient.name, amountType: removedIngredient.amountType }]);
-    }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -113,9 +105,7 @@ const AddRecipe = ({onClose}) => {
             return;
         }
 
-
         try {
-
             const formData = new FormData();
             formData.append("file", picture);
             const response = await api.post("/cloud/files", formData, {
@@ -133,13 +123,13 @@ const AddRecipe = ({onClose}) => {
                 prepTimeInMinutes: prepTimeInMinutes,
                 cookTimeInMinutes: cookTimeInMinutes,
                 ingredients: formattedIngredients,
-            })
+            });
             onClose();
         } catch (e) {
             setIsLoading(false);
         }
         setIsLoading(false);
-    }
+    };
 
     const handleSearch = async () => {
         try {
@@ -147,9 +137,9 @@ const AddRecipe = ({onClose}) => {
             const data = response.data.ingredients;
             setSearchResults(data);
         } catch (error) {
-           setSearchResults([])
+            setSearchResults([]);
         }
-    }
+    };
 
     return (
         <div className={"add-recipe-container"}>
@@ -159,8 +149,10 @@ const AddRecipe = ({onClose}) => {
                     X
                 </button>
             </div>
+
             <div className={"upload-recipe-image-container"}>
-                <input type="file" accept="image/*" onChange={(e) => setPicture(e.target.files[0])}/>
+                <label className={"picture-input-label"} htmlFor="picture">Upload Recipe Image:</label>
+                <input id="picture" type="file" accept="image/*" onChange={(e) => setPicture(e.target.files[0])}/>
                 <div className={"error-container-v2"}>{errors.picture &&
                     <span className="error">{errors.picture}</span>} </div>
             </div>
@@ -171,26 +163,33 @@ const AddRecipe = ({onClose}) => {
                         <Spinner />
                     </div>
                 )}
-                <input type="text" placeholder="Recipe Name" value={name} onChange={(e) => setName(e.target.value)}/>
+                <label htmlFor="name">Recipe Name:</label>
+                <input id="name" type="text" placeholder="Recipe Name" value={name} onChange={(e) => setName(e.target.value)} />
                 <div className={"error-container-v2"}>{errors.name && <span className="error">{errors.name}</span>} </div>
-                    <textarea placeholder="Preparation Steps" value={preparation}
-                          onChange={(e) => setPreparation(e.target.value)}/>
+
+                <label htmlFor="preparation">Preparation Steps:</label>
+                <textarea id="preparation" placeholder="Preparation Steps" value={preparation} onChange={(e) => setPreparation(e.target.value)} />
                 <div className={"error-container-v2"}>{errors.preparation &&
                     <span className="error">{errors.preparation}</span>} </div>
-                    <input type="number" placeholder="Prep Time (minutes)" value={prepTimeInMinutes}
-                       onChange={(e) => setPrepTimeInMinutes(parseInt(e.target.value, 10))}/>
+
+                <label htmlFor="prepTimeInMinutes">Prep Time (minutes):</label>
+                <input id="prepTimeInMinutes" type="number" placeholder="Prep Time (minutes)" value={prepTimeInMinutes} onChange={(e) => setPrepTimeInMinutes(parseInt(e.target.value, 10))} />
                 <div className={"error-container-v2"}> {errors.prepTimeInMinutes && <span className="error">{errors.prepTimeInMinutes}</span>} </div>
-                <input type="number" placeholder="Cook Time (minutes)" value={cookTimeInMinutes}
-                       onChange={(e) => setCookTimeInMinutes(parseInt(e.target.value, 10))}/>
+
+                <label htmlFor="cookTimeInMinutes">Cook Time (minutes):</label>
+                <input id="cookTimeInMinutes" type="number" placeholder="Cook Time (minutes)" value={cookTimeInMinutes} onChange={(e) => setCookTimeInMinutes(parseInt(e.target.value, 10))} />
                 <div className={"error-container-v2"}>{errors.cookTimeInMinutes &&
                     <span className="error">{errors.cookTimeInMinutes}</span>} </div>
-                    <input type="text" placeholder="Search Ingredients" value={searchQuery} onChange={(e) => {
+
+                <label htmlFor="searchQuery">Search Ingredients:</label>
+                <input id="searchQuery" type="text" placeholder="Search Ingredients" value={searchQuery} onChange={(e) => {
                     setSearchQuery(e.target.value);
                     handleSearch();
-                }}/>
-                    <div className={"error-container-v2"}>{errors.ingredients &&
-                        <span className="error">{errors.ingredients}</span>} </div>
-                        <div className={"ingredients-container"}>
+                }} />
+                <div className={"error-container-v2"}>{errors.ingredients &&
+                    <span className="error">{errors.ingredients}</span>} </div>
+
+                <div className={"ingredients-container"}>
                     {searchResults.map(ingredient => (
                         <div key={ingredient.id}>
                             {ingredient.name}
@@ -201,13 +200,13 @@ const AddRecipe = ({onClose}) => {
                 </div>
                 <h4>Selected Ingredients:</h4>
                 <ul>
-                    {Object.entries(ingredients).map(([id, {name, amount, amountType}]) => (
+                    {Object.entries(ingredients).map(([id, { name, amount, amountType }]) => (
                         <li key={id}>
                             {name}
                             <input type="number" value={amount} onChange={(e) => setIngredients(prevState => ({
                                 ...prevState,
-                                [id]: {...prevState[id], amount: e.target.value}
-                            }))}/>
+                                [id]: { ...prevState[id], amount: e.target.value }
+                            }))} />
                             <span>{amountType}</span>
                             <button onClick={() => handleRemoveIngredient(id)}>Remove</button>
                         </li>
@@ -219,7 +218,6 @@ const AddRecipe = ({onClose}) => {
             </div>
         </div>
     );
-}
-
+};
 
 export default AddRecipe;

@@ -86,6 +86,10 @@
     transform: translateY(-50%);
 }
 
+.picture-input-label {
+    margin-bottom: 50px;
+}
+
 .error-container-v2 {
     position: relative;
     width: 100%;
@@ -139,6 +143,10 @@ input[type="file"]:hover {
     cursor: pointer;
 }
 
+
+input[type="file"] {
+    margin-top: 10px;
+}
 .add-recipe-form-container button:hover {
     filter: brightness(0.8);
 }
