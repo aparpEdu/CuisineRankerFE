@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import api from "../../services/api";
 import "./AddRecipe.css"
-import { useForm } from 'react-hook-form';
 import Spinner from "../../components/spinner/Spinner2";
+
 
 
 const AddRecipe = ({onClose}) => {
@@ -15,7 +15,7 @@ const AddRecipe = ({onClose}) => {
     const [searchResults, setSearchResults] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-
+    const [errors, setErrors] = useState({});
 
 
 
@@ -37,6 +37,54 @@ const AddRecipe = ({onClose}) => {
     }, [searchQuery]);
 
 
+    const validateInputs = () => {
+        const errors = {};
+
+        if (!name.trim()) {
+            errors.name = "Please enter a name for the recipe.";
+        } else if (name.length < 2 || name.length > 50) {
+            errors.name = "Recipe's name should be between 2 and 50 characters long.";
+        }
+
+        if (!preparation.trim()) {
+            errors.preparation = "Please enter preparation steps for the recipe.";
+        } else if (preparation.length < 10) {
+            errors.preparation = "Please elaborate more on your preparation.";
+        } else if (preparation > 1000) {
+            errors.preparation = "Preparation shouldn't exceed 1000 characters long.";
+        }
+
+        if (prepTimeInMinutes < 1) {
+            errors.prepTimeInMinutes = "Preparation time must be at least 1 minute.";
+        }
+
+        if (cookTimeInMinutes < 1) {
+            errors.cookTimeInMinutes = "Cooking time must be at least 1 minute.";
+        }
+
+        if (Object.keys(ingredients).length === 0) {
+            errors.ingredients = "Please select at least one ingredient for the recipe.";
+        }
+
+
+        if (!picture) {
+            errors.picture = "Please upload a picture for the recipe.";
+        } else {
+            const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+            const fileName = picture.name;
+            const fileExtension = fileName.split('.').pop().toLowerCase();
+
+            if (!allowedExtensions.includes(fileExtension)) {
+                errors.picture = "File must be an image!";
+            }
+        }
+
+        setErrors(errors);
+
+        return errors;
+    }
+
+
     const handleAddIngredient = (ingredientObject) => {
         const { id, name, defaultAmount, amountType } = ingredientObject;
         setIngredients(prevState => ({ ...prevState, [id]: { name, amount: defaultAmount, amountType } }));
@@ -56,9 +104,18 @@ const AddRecipe = ({onClose}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
+
+        const validationErrors = validateInputs();
+        if (Object.keys(validationErrors).length > 0) {
+            setIsLoading(false);
+            setErrors(validationErrors);
+            return;
+        }
+
 
         try {
-            setIsLoading(true);
+
             const formData = new FormData();
             formData.append("file", picture);
             const response = await api.post("/cloud/files", formData, {
@@ -103,8 +160,11 @@ const AddRecipe = ({onClose}) => {
                 </button>
             </div>
             <div className={"upload-recipe-image-container"}>
-                <input type="file" accept="image/*" onChange={(e) => setPicture(e.target.files[0])} />
+                <input type="file" accept="image/*" onChange={(e) => setPicture(e.target.files[0])}/>
+                <div className={"error-container-v2"}>{errors.picture &&
+                    <span className="error">{errors.picture}</span>} </div>
             </div>
+
             <div className={"add-recipe-form-container"}>
                 {isLoading && (
                     <div className="spinner-overlay">
@@ -112,17 +172,25 @@ const AddRecipe = ({onClose}) => {
                     </div>
                 )}
                 <input type="text" placeholder="Recipe Name" value={name} onChange={(e) => setName(e.target.value)}/>
-                <textarea placeholder="Preparation Steps" value={preparation}
+                <div className={"error-container-v2"}>{errors.name && <span className="error">{errors.name}</span>} </div>
+                    <textarea placeholder="Preparation Steps" value={preparation}
                           onChange={(e) => setPreparation(e.target.value)}/>
-                <input type="number" placeholder="Prep Time (minutes)" value={prepTimeInMinutes}
+                <div className={"error-container-v2"}>{errors.preparation &&
+                    <span className="error">{errors.preparation}</span>} </div>
+                    <input type="number" placeholder="Prep Time (minutes)" value={prepTimeInMinutes}
                        onChange={(e) => setPrepTimeInMinutes(parseInt(e.target.value, 10))}/>
+                <div className={"error-container-v2"}> {errors.prepTimeInMinutes && <span className="error">{errors.prepTimeInMinutes}</span>} </div>
                 <input type="number" placeholder="Cook Time (minutes)" value={cookTimeInMinutes}
                        onChange={(e) => setCookTimeInMinutes(parseInt(e.target.value, 10))}/>
-                <input type="text" placeholder="Search Ingredients" value={searchQuery} onChange={(e) => {
+                <div className={"error-container-v2"}>{errors.cookTimeInMinutes &&
+                    <span className="error">{errors.cookTimeInMinutes}</span>} </div>
+                    <input type="text" placeholder="Search Ingredients" value={searchQuery} onChange={(e) => {
                     setSearchQuery(e.target.value);
                     handleSearch();
                 }}/>
-                <div className={"ingredients-container"}>
+                    <div className={"error-container-v2"}>{errors.ingredients &&
+                        <span className="error">{errors.ingredients}</span>} </div>
+                        <div className={"ingredients-container"}>
                     {searchResults.map(ingredient => (
                         <div key={ingredient.id}>
                             {ingredient.name}
