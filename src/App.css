@@ -18,6 +18,12 @@
 }
 
 
+textarea {
+  color: white;
+  background-color: #1b2e35;
+  border: 1px solid #FFA2A2FF;
+}
+
 .logo-container {
   position: fixed;
   top: 0;
