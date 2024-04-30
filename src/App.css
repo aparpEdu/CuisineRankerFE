@@ -18,17 +18,22 @@
 }
 
 
+textarea {
+  color: white;
+  background-color: #1b2e35;
+  border: 1px solid #FFA2A2FF;
+}
+
 .logo-container {
   position: fixed;
   top: 0;
   left: 0;
-  padding: 10px;
   z-index: 1000;
 }
 
 .logo-img {
-  max-width: 44%;
-  max-height: 71%;
+  width: 347px;
+  height: 185px;
 }
 
 .spinner {

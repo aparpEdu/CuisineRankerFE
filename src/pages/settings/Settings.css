@@ -44,8 +44,30 @@ button[type="submit"]:hover {
     width: fit-content;
     border-radius: 10px;
     display: inline-block;
-    margin-left: 180px;
+    margin-left: 200px;
+    margin-bottom: 30px;
 
+}
+
+.button-resend {
+    background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%);
+    text-align: center;
+    text-transform: uppercase;
+    background-size: 200% auto;
+    color: white;
+    width: fit-content;
+    border-radius: 10px;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.button-resend:disabled {
+    background-image: linear-gradient(to right, #5b5757 0%, #5e5f64 51%, #c7ccd7 100%);
+    color: silver;
+    cursor: initial;
+}
+.button-resend:hover {
+    filter: brightness(80%);
 }
 
 .button-save:hover {
@@ -113,6 +135,15 @@ button[type="submit"]:hover {
     opacity: 0;
     width: 0;
     height: 0;
+}
+
+.category-title {
+    margin-bottom: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid #FFA2A2FF;
+    text-align: center;
+    margin-left:160px;
 }
 
 .slider {
