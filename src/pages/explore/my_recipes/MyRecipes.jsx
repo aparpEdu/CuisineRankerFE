@@ -21,7 +21,7 @@ const MyRecipes = () => {
         };
 
         fetchRecipes();
-    }, [])
+    }, [showAddRecipeWindow])
 
     const handleDelete = async (id) => {
         const confirmDelete = window.confirm("Are you sure you want to remove this recipe?");
