@@ -13,7 +13,7 @@
 **There is also a competitive side, in which you can participate in different competitions and track your position**
 **on different kinds of leaderboards!**
 
-**You can find out more at: https://github.com/users/LexterLab/projects/5**
+**You can find out more at: https://github.com/users/LexterLab/projects/5?pane=info**
 
 ## What is Frontend?
 
@@ -32,7 +32,7 @@ git switch develop
 
 # Releases
 
-**You can find every release(version) of the API by going to:  https://github.com/LexterLab/CuisineRankerFE/releases**
+**You can find every release(version) of the Frontend by going to:  https://github.com/LexterLab/CuisineRankerFE/releases**
 
 **The latest release will always have the "Latest" tag!**
 
