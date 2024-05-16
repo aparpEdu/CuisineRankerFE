@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import './FriendList.css'
 import AddFriend from "../../components/add_friend/AddFriend";
+import FriendToken from "../../components/friend_token/FriendToken";
 
 const FriendList = () => {
     const [friends, setFriends] = useState([]);
     const [filteredFriends, setFilteredFriends] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [showAddFriendWindow, setShowAddFriendWindow] = useState(false);
+    const [showFriendshipTokenWindow, setShowFriendshipTokenWindow] = useState(false);
 
     useEffect(() => {
         fetchFriends();
@@ -33,6 +35,9 @@ const FriendList = () => {
         setShowAddFriendWindow(!showAddFriendWindow);
     }
 
+    const handleOpenFriendshipTokenWindow = () => {
+        setShowFriendshipTokenWindow(!showFriendshipTokenWindow);
+    }
 
     const filterFriends = (data) => {
         const filtered = data.filter((friend) =>
@@ -69,8 +74,11 @@ const FriendList = () => {
                 onChange={handleSearch}
             />
             <button onClick={handleOpenAddFriendWindow}>Add Friend</button>
-            <button id={"friendship-token"}>Get Friendship Token</button>
+            <button id={"friendship-token"} onClick={handleOpenFriendshipTokenWindow}>Get Friendship Token</button>
         </div>
+            {showFriendshipTokenWindow && (
+                <FriendToken onClose={handleOpenFriendshipTokenWindow} />
+            )}
             {showAddFriendWindow && (
                 <AddFriend onClose={handleOpenAddFriendWindow}/>
             )}
