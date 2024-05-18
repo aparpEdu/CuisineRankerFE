@@ -20,6 +20,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    border-bottom: 2px solid #d2af62;
 }
 
 .close-button {
@@ -34,6 +35,56 @@
     margin: 0;
     font-size: 1.2rem;
     color: #d2af62;
+}
+
+.add-friend-container_selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 35px 0;
+    flex-direction: row;
+}
+
+.add-friend-container_selector span {
+    border-bottom: 3px solid #d2af62;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    margin: 0 10px;
+    transition: transform 1s;
+}
+
+.add-friend-container_selector span:hover {
+    border-bottom-color: #c1d3da;
+    cursor: pointer;
+    transform: scale(1.15);
+}
+
+.add-friend-container_selector span.active {
+    border-bottom-color: white;
+    transform: scale(1.15);
+}
+
+.add-friend-container_search {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.add-friend-container_token {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.add-friend-container_token input {
+    width: 295px;
+}
+
+.add-friend-container_token button {
+    margin-top: 10px;
 }
 
 .add-friend-container_users {
