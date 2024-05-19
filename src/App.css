@@ -29,11 +29,25 @@ textarea {
   top: 0;
   left: 0;
   z-index: 1000;
+  /*transition: transform 5s;*/
 }
 
 .logo-img {
   width: 347px;
   height: 185px;
+}
+
+.logo-container:hover {
+  animation: tiltOnce 5s forwards;
+}
+
+@keyframes tiltOnce {
+  0% {
+    transform: none;
+  }
+  100% {
+    transform: perspective(1000px) rotateY(360deg);
+  }
 }
 
 .spinner {

@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import './FriendList.css'
+import AddFriend from "../../components/add_friend/AddFriend";
+import FriendToken from "../../components/friend_token/FriendToken";
+import FriendRequestMenu from "../../components/friend_request_menu/FriendRequestMenu";
 
 const FriendList = () => {
     const [friends, setFriends] = useState([]);
     const [filteredFriends, setFilteredFriends] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [showAddFriendWindow, setShowAddFriendWindow] = useState(false);
+    const [showFriendshipTokenWindow, setShowFriendshipTokenWindow] = useState(false);
+    const [showRequestsWindow, setShowRequestsWindow] = useState(false);
+    const [requests, setRequests] = useState(0);
 
     useEffect(() => {
         fetchFriends();
-    },  [searchTerm]);
+        fetchRequests();
+    },  [searchTerm, showAddFriendWindow, showFriendshipTokenWindow, showRequestsWindow]);
 
     const fetchFriends = async () => {
         try {
@@ -22,11 +30,31 @@ const FriendList = () => {
         }
     };
 
+    const fetchRequests = async () => {
+        try {
+            const response = await api.get('users/friends/requests');
+            setRequests(response.data.totalElements);
+        } catch (error) {
+            console.error('Error fetching friends:', error);
+        }
+    };
+
     const handleSearch = (e) => {
         const term = e.target.value;
         setSearchTerm(term);
     };
 
+    const handleOpenAddFriendWindow = () => {
+        setShowAddFriendWindow(!showAddFriendWindow);
+    }
+
+    const handleOpenFriendshipTokenWindow = () => {
+        setShowFriendshipTokenWindow(!showFriendshipTokenWindow);
+    }
+
+    const handleOpenRequestsWindow = () => {
+        setShowRequestsWindow(!showRequestsWindow);
+    }
 
     const filterFriends = (data) => {
         const filtered = data.filter((friend) =>
@@ -53,10 +81,6 @@ const FriendList = () => {
         }
     };
 
-    const handleAddFriend = async () => {
-
-    };
-
     return (
         <div className={"friend-menu"}>
             <div className={"friends-top"}>
@@ -66,8 +90,19 @@ const FriendList = () => {
                 value={searchTerm}
                 onChange={handleSearch}
             />
-            <button onClick={handleAddFriend}>Add Friend</button>
+            <button onClick={handleOpenAddFriendWindow}>Add Friend</button>
+            <button id={"friendship-token"} onClick={handleOpenFriendshipTokenWindow}>Get Friendship Token</button>
+            <button style={{backgroundColor: "#f7931b"}} onClick={handleOpenRequestsWindow}>Friend Requests <span>{requests}</span></button>
         </div>
+            {showFriendshipTokenWindow && (
+                <FriendToken onClose={handleOpenFriendshipTokenWindow} />
+            )}
+            {showAddFriendWindow && (
+                <AddFriend onClose={handleOpenAddFriendWindow}/>
+            )}
+            {showRequestsWindow && (
+                <FriendRequestMenu onClose={handleOpenRequestsWindow} />
+            )}
             <div className={"friend-list"}>
                 {filteredFriends.map((friend) => (
                     <div key={friend.id} className="friend-container">
