@@ -96,3 +96,16 @@
 .friends-top button:hover {
     filter: brightness(80%);
 }
+
+.friends-top span {
+    width: 15px;
+    height: 15px;
+    background-color: #ffca05;
+    color: #000;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    border: 3px solid #ffca05;
+    font-size: 14px;
+    font-weight: bold;
+}
