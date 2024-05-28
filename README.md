@@ -36,6 +36,21 @@ git switch develop
 
 **The latest release will always have the "Latest" tag!**
 
+## Environment variables
+Before running the project you must first setup the necessary environment variables!
+
+You can do so by opening .env file in projects root *"directory cranker/.env"*
+
+There you must setup google client id for your google authentication:
+
+You can get your google client id by creating oauth credentials in your google console: 
+https://console.cloud.google.com/apis/credentials
+
+```.dotenv
+REACT_APP_GOOGLE_CLIENT_ID={your client id}
+```
+
+
 ## How to run
 
 In the project directory, you can run:

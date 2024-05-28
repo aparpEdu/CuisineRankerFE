@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 import Success from  "../../components/email_confirm/EmailConfirm"
 import Spinner2 from "../../components/spinner/Spinner2";
+import GoogleLoginButton from "../../components/google/GoogleLoginButton";
+import {handleGoogleLoginFailure, handleGoogleLoginSuccess} from "../../services/authService";
 const Signup = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -103,6 +105,15 @@ const Signup = () => {
         return errors;
     };
 
+    const handleGoogleSuccess = async (credentials) => {
+        try {
+            await handleGoogleLoginSuccess(credentials);
+            window.location.reload();
+        } catch (error) {
+            console.error(error.response.data.message);
+        }
+    }
+
     return (
         <>
 
@@ -110,67 +121,73 @@ const Signup = () => {
                 <Success email={email} />
             ) : (
                 <div className="login-container">
-            <h2>Sign Up</h2>
-            <form onSubmit={handleSubmit}>
-                <label>First Name:</label>
-                <input
-                    type="text"
-                    placeholder="Enter your first name"
-                    value={firstName}
-                    onChange={handleFirstNameChange}
-                />
-                {errors.firstName && <span className="error">{errors.firstName}</span>}
+                    <h2>Sign Up</h2>
+                    <div className={"google-button"}>
+                        <GoogleLoginButton
+                            onSuccess={handleGoogleSuccess}
+                            onFailure={handleGoogleLoginFailure}
+                        />
+                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <label>First Name:</label>
+                        <input
+                            type="text"
+                            placeholder="Enter your first name"
+                            value={firstName}
+                            onChange={handleFirstNameChange}
+                        />
+                        {errors.firstName && <span className="error">{errors.firstName}</span>}
 
-                <label>Last Name:</label>
-                <input
-                    type="text"
-                    placeholder="Enter your last name"
-                    value={lastName}
-                    onChange={handleLastNameChange}
-                />
-                {errors.lastName && <span className="error">{errors.lastName}</span>}
+                        <label>Last Name:</label>
+                        <input
+                            type="text"
+                            placeholder="Enter your last name"
+                            value={lastName}
+                            onChange={handleLastNameChange}
+                        />
+                        {errors.lastName && <span className="error">{errors.lastName}</span>}
 
-                <label>Email:</label>
-                <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={handleEmailChange}
-                />
-                {errors.email && <span className="error">{errors.email}</span>}
+                        <label>Email:</label>
+                        <input
+                            type="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={handleEmailChange}
+                        />
+                        {errors.email && <span className="error">{errors.email}</span>}
 
-                <label>Password:</label>
-                <input
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                />
-                {errors.password && <span className="error">{errors.password}</span>}
+                        <label>Password:</label>
+                        <input
+                            type="password"
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={handlePasswordChange}
+                        />
+                        {errors.password && <span className="error">{errors.password}</span>}
 
-                <label>Confirm Password:</label>
-                <input
-                    type="password"
-                    placeholder="Confirm your password"
-                    value={matchingPassword}
-                    onChange={handleConfirmPasswordChange}
-                />
-                {errors.matchingPassword && <span className="error">{errors.matchingPassword}</span>}
+                        <label>Confirm Password:</label>
+                        <input
+                            type="password"
+                            placeholder="Confirm your password"
+                            value={matchingPassword}
+                            onChange={handleConfirmPasswordChange}
+                        />
+                        {errors.matchingPassword && <span className="error">{errors.matchingPassword}</span>}
 
-                <button type="submit">Sign Up</button>
-            </form>
+                        <button type="submit">Sign Up</button>
+                    </form>
 
-            <div className="options">
-                <Link to="/">Already a registered user? Sign in here.</Link>
-            </div>
+                    <div className="options">
+                        <Link to="/">Already a registered user? Sign in here.</Link>
+                    </div>
                     {isLoading && (
                         <div className="spinner-overlay">
-                            <Spinner2 />
+                            <Spinner2/>
                         </div>
                     )}
                 </div>
 
-                )}
+            )}
         </>
     );
 };

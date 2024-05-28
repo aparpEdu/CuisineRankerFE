@@ -3,6 +3,9 @@ import axios from "axios";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import Spinner2 from "../../components/spinner/Spinner2";
+import GoogleLoginButton from "../../components/google/GoogleLoginButton";
+import {handleGoogleLoginSuccess, handleGoogleLoginFailure} from "../../services/authService";
+
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,6 +15,7 @@ const Login = () => {
     const [accessToken, setAccessToken] = useState("");
     const [refreshToken, setRefreshToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     };
@@ -84,6 +88,15 @@ const Login = () => {
         }
     }
 
+    const handleGoogleSuccess = async (credentials) => {
+      try {
+          await handleGoogleLoginSuccess(credentials);
+          window.location.reload();
+      } catch (error) {
+          setError(error.response.data.message);
+      }
+    }
+
     return (
         <div className="login-container">
             <h2>Log In</h2>
@@ -118,6 +131,7 @@ const Login = () => {
                     />
                     {error && <p style={{ color: "red" }}>{error}</p>}
                     <button type="submit">Sign In</button>
+
                     {isLoading && (
                         <div className="spinner-overlay">
                             <Spinner2 />
@@ -128,8 +142,15 @@ const Login = () => {
             )}
 
             <div className="options">
+
                 <Link to="/forgot-password">Forgot Password?</Link>
                 <Link to="/signup">Sign Up</Link>
+            </div>
+            <div className={"google-button"}>
+                <GoogleLoginButton
+                    onSuccess={handleGoogleSuccess}
+                    onFailure={handleGoogleLoginFailure}
+                />
             </div>
         </div>
     );
