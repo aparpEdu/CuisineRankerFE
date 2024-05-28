@@ -85,7 +85,7 @@ body{
 }
 
 .google-button {
-    margin-top: 10px;
+    margin: 10px 0;
     display: flex;
     justify-content: center;
 }
