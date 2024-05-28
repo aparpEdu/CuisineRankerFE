@@ -3,9 +3,14 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 
 const GoogleLoginButton = ({onSuccess, onFailure}) => {
+    const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
     return (
-      <GoogleOAuthProvider clientId={"678012927517-d9qbbllemir1dqg3g426a4lu9ghf0dm6.apps.googleusercontent.com"}>
+      <GoogleOAuthProvider clientId={clientId}>
           <GoogleLogin
+              theme={"filled_black"}
+              size={"large"}
+              text={"continue_with"}
+              shape={"circle"}
               onSuccess={onSuccess}
               onFailure={onFailure}
               />
