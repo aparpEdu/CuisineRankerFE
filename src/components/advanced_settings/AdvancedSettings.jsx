@@ -11,8 +11,9 @@ const AdvancedSettings = () => {
         const fetchData = async () => {
             try {
                 const response = await api.get("/users");
-                const { isTwoFactorEnabled } = response.data;
+                const { isTwoFactorEnabled, isSocial} = response.data;
                 setIsTwoFactorEnabled(isTwoFactorEnabled);
+                setIsDisabled(isSocial);
             } catch (error) {
                 setError(error.data.message);
             }
