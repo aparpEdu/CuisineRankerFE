@@ -83,3 +83,13 @@ body{
     width: 50px;
     height: 50px;
 }
+
+.google-button {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.google-button:hover {
+    filter: brightness(90%);
+}

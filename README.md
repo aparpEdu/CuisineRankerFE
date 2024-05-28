@@ -13,7 +13,7 @@
 **There is also a competitive side, in which you can participate in different competitions and track your position**
 **on different kinds of leaderboards!**
 
-**You can find out more at: https://github.com/users/LexterLab/projects/5**
+**You can find out more at: https://github.com/users/LexterLab/projects/5?pane=info**
 
 ## What is Frontend?
 
@@ -32,9 +32,24 @@ git switch develop
 
 # Releases
 
-**You can find every release(version) of the API by going to:  https://github.com/LexterLab/CuisineRankerFE/releases**
+**You can find every release(version) of the Frontend by going to:  https://github.com/LexterLab/CuisineRankerFE/releases**
 
 **The latest release will always have the "Latest" tag!**
+
+## Environment variables
+Before running the project you must first setup the necessary environment variables!
+
+You can do so by opening .env file in projects root *"directory cranker/.env"*
+
+There you must setup google client id for your google authentication:
+
+You can get your google client id by creating oauth credentials in your google console: 
+https://console.cloud.google.com/apis/credentials
+
+```.dotenv
+REACT_APP_GOOGLE_CLIENT_ID={your client id}
+```
+
 
 ## How to run
 

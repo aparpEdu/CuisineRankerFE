@@ -14,13 +14,12 @@
     border-radius: 12px;
     overflow: hidden;
     position: relative;
-    transition: width 0.3s, height 0.3s;
+    transition: transform 0.3s;
 }
 
 
 .recipe-square:hover {
-    width: 220px;
-    height: 270px;
+    transform: scale(1.1);
     cursor: pointer;
 }
 .recipe-image {
@@ -110,5 +109,38 @@
     display: inline-block;
     padding-bottom: 1px;
     border-bottom: 2px solid #FFA2A2FF;
+}
+
+.recipe-control-menu{
+    display: flex;
+    align-items: center;
+    margin: 2px 0 30px 120px;
+}
+
+.recipe-control-menu input[type="text"] {
+    width: 15%;
+}
+
+@media screen and  (max-width: 768px) {
+
+    .recipe-container {
+        margin-left: 50px;
+    }
+
+    .recipe-square {
+        opacity: 100%;
+    }
+
+    .recipe-info {
+        background-color: #131f24;
+    }
+
+    .recipe-control-menu {
+        margin-left: 55px;
+    }
+
+    .recipe-control-menu input[type="text"] {
+        width: 200px
+    }
 }
 

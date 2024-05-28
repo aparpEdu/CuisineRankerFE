@@ -1,0 +1,101 @@
+.friend-request-menu-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #131f24;
+    opacity: 0.99;
+    border: 3px solid #d2af62;
+    border-radius: 12px;
+    padding: 30px;
+    z-index: 999;
+    width: 450px;
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.friend-request-menu-container_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #d2af62;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #d2af62;
+    font-size: 1.2rem;
+}
+.friend-request-menu-container h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #d2af62;
+}
+
+.friend-request-menu-container_selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 35px 0;
+    flex-direction: row;
+}
+
+.friend-request-menu-container_selector span {
+    border-bottom: 3px solid #d2af62;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    margin: 0 10px;
+    transition: transform 1s;
+}
+
+.friend-request-menu-container_selector span:hover {
+    border-bottom-color: #c1d3da;
+    cursor: pointer;
+    transform: scale(1.15);
+}
+
+.friend-request-menu-container_selector span.active {
+    border-bottom-color: white;
+    transform: scale(1.15);
+}
+
+.friend-request-menu-container_body {
+    padding: 10px;
+}
+
+.request-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 10px 0;
+    padding: 10px;
+    border: #d2af62 solid 1px;
+    border-radius: 10px;
+}
+
+.request-box:hover {
+    background: #d2af62;
+    color: #fff;
+    box-shadow: 2px 2px 2px #d2af62;
+}
+
+.request-box_pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.request-box_pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.request-box button:hover {
+    filter: brightness(0.86);
+}

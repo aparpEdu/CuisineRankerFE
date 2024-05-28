@@ -1,0 +1,72 @@
+.friend-token-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #131f24;
+    opacity: 0.99;
+    border: 3px solid #d2af62;
+    border-radius: 12px;
+    padding: 30px;
+    z-index: 999;
+    width: 450px;
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.friend-token-container_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.friend-token-container_header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #d2af62;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #d2af62;
+    font-size: 1.2rem;
+}
+
+.friend-token-container_body {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.friend-token-container_body input {
+    border-radius: 12px;
+    padding: 8px;
+    margin-top: 30px;
+    color: white;
+    background-color: #1b2e35;
+    border: 1px solid #FFA2A2FF;
+    width: 300px;
+}
+
+.friend-token-container_body input:hover {
+    cursor: pointer;
+}
+
+.friend-token-container_body span {
+    color: #dca5a5;
+    margin-bottom: 10px;
+}
+
+.friend-token-container_body p {
+    margin: 5px 0;
+}
+
+
+
+

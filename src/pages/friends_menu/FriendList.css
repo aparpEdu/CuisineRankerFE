@@ -49,6 +49,10 @@
     height: 110px; 
 }
 
+#friendship-token {
+    background-color: #2bbdbb;
+}
+
 
 .action-buttons {
     display: flex;
@@ -73,7 +77,6 @@
 .friend-list {
     display: flex;
     flex-wrap: wrap;
-
 }
 
 .friend-container:hover .friend-details p {
@@ -92,4 +95,17 @@
 
 .friends-top button:hover {
     filter: brightness(80%);
+}
+
+.friends-top span {
+    width: 15px;
+    height: 15px;
+    background-color: #ffca05;
+    color: #000;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    border: 3px solid #ffca05;
+    font-size: 14px;
+    font-weight: bold;
 }
