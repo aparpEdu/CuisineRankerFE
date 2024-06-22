@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import './FriendList.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import AddFriend from "../../components/add_friend/AddFriend";
 import FriendToken from "../../components/friend_token/FriendToken";
 import FriendRequestMenu from "../../components/friend_request_menu/FriendRequestMenu";
 
 const FriendList = () => {
-    const [friends, setFriends] = useState([]);
     const [filteredFriends, setFilteredFriends] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [showAddFriendWindow, setShowAddFriendWindow] = useState(false);
@@ -23,7 +24,6 @@ const FriendList = () => {
         try {
             const response = await api.get('users/friends');
             const friendsData = response.data.friendships;
-            setFriends(friendsData);
             filterFriends(friendsData);
         } catch (error) {
             console.error('Error fetching friends:', error);
@@ -63,10 +63,15 @@ const FriendList = () => {
         setFilteredFriends(filtered);
     };
 
-    const handleRemoveFriend = async (friendId) => {
+    const handleRemoveFriend = async (friendId, friendName) => {
         try {
-            await api.delete(`users/friends/${friendId}`);
-            fetchFriends();
+            const confirmDelete = window.confirm("Are you sure you want to remove this friend?");
+            if (confirmDelete) {
+                await api.delete(`users/friends/${friendId}`);
+                await fetchFriends();
+                toast.success('Removed ' + friendName + ' from friend list!');
+            }
+
         } catch (error) {
             console.error('Error removing friend:', error);
         }
@@ -104,6 +109,7 @@ const FriendList = () => {
                 <FriendRequestMenu onClose={handleOpenRequestsWindow} />
             )}
             <div className={"friend-list"}>
+                <ToastContainer />
                 {filteredFriends.map((friend) => (
                     <div key={friend.id} className="friend-container">
                         <div className="profile-pic">
@@ -114,7 +120,7 @@ const FriendList = () => {
                             <p style={{color:"cornsilk"}}>Friends since: {friend.updatedAtFormatted}</p>
                         </div>
                         <div className="action-buttons">
-                            <button onClick={() => handleRemoveFriend(friend.id)}>
+                            <button onClick={() => handleRemoveFriend(friend.id, friend.friendName)}>
                                 Remove
                             </button>
                             <button style={{backgroundColor: "darkred"}} onClick={() => handleBlockFriend(friend.id)}>
