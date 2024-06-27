@@ -4,6 +4,8 @@ import api from '../../../services/api'
 import clock from "../../../assets/clock.svg"
 import AddRecipeButton from "../../../components/add_recipe/AddRecipeButton";
 import AddRecipe from "../../../components/add_recipe/AddRecipe";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyRecipes = () => {
     const [showAddRecipeWindow, setShowAddRecipeWindow] = useState(false);
@@ -29,8 +31,9 @@ const MyRecipes = () => {
             try {
                 await api.delete(`/recipes/personal/${id}`);
                 setFilteredRecipes(filteredRecipes.filter(recipe => recipe.id !== id));
+                toast.success('Recipe deleted!');
             } catch (error) {
-                console.error('Error deleting recipe:', error);
+                toast.error("Error removing recipe! " + error.response.data.message);
             }
         }
     }
@@ -58,9 +61,9 @@ const MyRecipes = () => {
     }
 
 
-
     return (
         <div>
+
             <div className="my-recipes-title">
                 <h2>My Recipes</h2>
                 <div className="title-line"></div>
@@ -73,8 +76,9 @@ const MyRecipes = () => {
                     onChange={handleSearch}
                 />
             </div>
+            <ToastContainer />
             {showAddRecipeWindow && (
-                <AddRecipe onClose={handleCloseAddRecipeWindow}/>
+                <AddRecipe onClose={handleCloseAddRecipeWindow} />
             )}
             <div className="recipe-container">
             <div onClick={handleOpenAddRecipeWindow}><AddRecipeButton /></div>
