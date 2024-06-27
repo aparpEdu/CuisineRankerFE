@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import api from "../../services/api";
 import Spinner2 from "../spinner/Spinner2";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -8,7 +10,6 @@ const ChangePassword = () => {
   const [matchingPassword, setMatchingPassword] = useState("");
   const [error, setError] = useState("");
   const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e) => {
@@ -28,7 +29,7 @@ const ChangePassword = () => {
                 matchingPassword: matchingPassword
             });
             setIsLoading(false);
-            setSuccess("Saved changes");
+            toast.success("Password changed successfully.");
         } catch (e) {
             setIsLoading(false);
             if (e.response.data.message.length > 50) {
@@ -105,7 +106,6 @@ const ChangePassword = () => {
                 </div>
                 {errors.matchingPassword && <span className="error">{errors.matchingPassword}</span>}
                 {error && <p className="error" >{error}</p>}
-                {success && <p style={{ color: "lime" }} className="error-success">{success}</p>}
                 <button type="submit" className="button-save">SAVE CHANGES</button>
                 {isLoading && (
                     <div className="spinner-overlay">
@@ -113,6 +113,7 @@ const ChangePassword = () => {
                     </div>
                 )}
             </form>
+        <ToastContainer />
     </div>
   );
 };
