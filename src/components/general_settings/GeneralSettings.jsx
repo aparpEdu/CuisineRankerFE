@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from "react";
 import api from "../../services/api";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "./GeneralSettings.css"
 
 const GeneralSettings = () => {
     const [firstName, setFirstName] = useState("");
@@ -9,7 +12,6 @@ const GeneralSettings = () => {
     const [errors, setErrors] = useState({});
     const [error, setError] = useState("");
     const [isDisabled, setDisabled] = useState(true)
-    const [success, setSuccess] = useState("");
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -29,7 +31,6 @@ const GeneralSettings = () => {
     }, []);
 
     const handleInputChange = (e) => {
-        setSuccess("");
         const { id, value } = e.target;
         if (
             (id === "firstName" && value !== initialFirstName)  ||
@@ -70,10 +71,10 @@ const GeneralSettings = () => {
             setInitialFirstName(response.data.firstName);
             setInitialLastName(response.data.lastName);
             setDisabled(true);
-            setSuccess("Saved changes");
             setErrors([])
+            toast.success("Saved changes");
         } catch (e) {
-            setError(e.response.data.message);
+           toast.error(e.response.data.message);
         }
     };
 
@@ -101,36 +102,30 @@ const GeneralSettings = () => {
     };
 
     return (
-      <div>
+      <div >
           <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                  <label className={"settings-label"} htmlFor="firstName">First Name:</label>
+              <div className={"general-settings-container"}>
+                  <label  htmlFor="firstName">First Name:</label>
                   <input
-                      className={"settings-input"}
                       type="text"
                       id="firstName"
                       value={firstName}
                       onChange={handleInputChange}
                   />
-
-              </div>
-              {errors.firstName && <span className="error">{errors.firstName}</span>}
-              <div className="form-group">
-                  <label className={"settings-label"}  htmlFor="lastName">Last Name:</label>
+              {errors.firstName && <span >{errors.firstName}</span>}
+                  <label  htmlFor="lastName">Last Name:</label>
                   <input
-                      className={"settings-input"}
                       type="text"
                       id="lastName"
                       value={lastName}
                       onChange={handleInputChange}
                   />
-              </div>
-              {errors.lastName && <span className="error">{errors.lastName}</span>}
-              {error && <p style={{ color: "red" }}>{error}</p>}
-              {success && <p style={{ color: "lime" }} className="error-success">{success}</p>}
-              <button type="submit" disabled={isDisabled} className="button-save">SAVE CHANGES</button>
 
+              {errors.lastName && <span>{errors.lastName}</span>}
+              <button type="submit" disabled={isDisabled} className="button-save">SAVE CHANGES</button>
+              </div>
           </form>
+          <ToastContainer />
       </div>
     );
 };
