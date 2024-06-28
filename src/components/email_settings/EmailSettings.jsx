@@ -3,6 +3,7 @@ import api from "../../services/api";
 import Spinner2 from "../spinner/Spinner2";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../general_settings/GeneralSettings.css';
 
 
 const EmailSettings = () =>{
@@ -120,7 +121,7 @@ const EmailSettings = () =>{
                         onChange={handleOldEmailChange}
                     />
                 </div>
-                {errors.oldEmail && <span className="error">{errors.oldEmail}</span>}
+                {errors.oldEmail && <span className="error-message">{errors.oldEmail}</span>}
                 <div className="form-group">
                     <label className="settings-label" htmlFor="newEmail">New Email:</label>
                     <input
@@ -130,7 +131,7 @@ const EmailSettings = () =>{
                         onChange={handleNewEmailChange}
                     />
                 </div>
-                {errors.newEmail && <span className="error">{errors.newEmail}</span>}
+                {errors.newEmail && <span className="error-message">{errors.newEmail}</span>}
                 <button type="submit" className="button-save">SAVE CHANGES</button>
                 {isLoading && (
                     <div className="spinner-overlay">
