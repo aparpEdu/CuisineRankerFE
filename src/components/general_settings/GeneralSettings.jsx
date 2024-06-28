@@ -10,7 +10,6 @@ const GeneralSettings = () => {
     const [initialFirstName, setInitialFirstName] = useState("");
     const [initialLastName, setInitialLastName] = useState("");
     const [errors, setErrors] = useState({});
-    const [error, setError] = useState("");
     const [isDisabled, setDisabled] = useState(true)
 
     useEffect(() => {
