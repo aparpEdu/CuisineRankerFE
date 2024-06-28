@@ -1,14 +1,15 @@
 import React, {useState} from "react";
 import api from "../../services/api";
 import Spinner2 from "../spinner/Spinner2";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../general_settings/GeneralSettings.css'
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [matchingPassword, setMatchingPassword] = useState("");
-  const [error, setError] = useState("");
   const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e) => {
@@ -28,14 +29,10 @@ const ChangePassword = () => {
                 matchingPassword: matchingPassword
             });
             setIsLoading(false);
-            setSuccess("Saved changes");
+            toast.success("Password changed successfully.");
         } catch (e) {
             setIsLoading(false);
-            if (e.response.data.message.length > 50) {
-                setError("Internal Server Error");
-            } else {
-            setError(e.response.data.message);
-            }
+            toast.error(e.response.data.message);
         }
     };
 
@@ -73,9 +70,8 @@ const ChangePassword = () => {
     };
 
     return (
-    <div>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
+    <div >
+            <form onSubmit={handleSubmit} className= "general-settings-container">
                     <label className={"settings-label"} htmlFor="oldPassword">Old Password:</label>
                     <input
                         className={"settings-input"}
@@ -83,8 +79,6 @@ const ChangePassword = () => {
                         id="oldPassword"
                         onChange={handleOldPasswordChange}
                     />
-                </div>
-                <div className="form-group">
                     <label className={"settings-label"} htmlFor="newPassword">New Password:</label>
                     <input
                         className={"settings-input"}
@@ -92,9 +86,7 @@ const ChangePassword = () => {
                         id="newPassword"
                         onChange={handleNewPasswordChange}
                     />
-                </div>
-                {errors.password && <span className="error">{errors.password}</span>}
-                <div className="form-group">
+                {errors.password && <span >{errors.password}</span>}
                     <label className={"settings-label"} htmlFor="matchingPassword">Confirm Password:</label>
                     <input
                         className={"settings-input"}
@@ -102,10 +94,7 @@ const ChangePassword = () => {
                         id="matchingPassword"
                         onChange={handleMatchingPasswordChange}
                     />
-                </div>
-                {errors.matchingPassword && <span className="error">{errors.matchingPassword}</span>}
-                {error && <p className="error" >{error}</p>}
-                {success && <p style={{ color: "lime" }} className="error-success">{success}</p>}
+                {errors.matchingPassword && <span >{errors.matchingPassword}</span>}
                 <button type="submit" className="button-save">SAVE CHANGES</button>
                 {isLoading && (
                     <div className="spinner-overlay">
@@ -113,6 +102,7 @@ const ChangePassword = () => {
                     </div>
                 )}
             </form>
+        <ToastContainer />
     </div>
   );
 };

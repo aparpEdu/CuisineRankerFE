@@ -106,10 +106,10 @@ button[type="submit"]:hover {
     border-bottom: 2px solid #FFA2A2FF;
 }
 
-.error {
+.error-message {
     display: block;
-    margin-left: 170px;
     color: red;
+    margin: 0 0 20px 150px;
 }
 
 .error-success {
