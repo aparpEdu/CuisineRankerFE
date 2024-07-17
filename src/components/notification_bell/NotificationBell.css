@@ -1,0 +1,41 @@
+.bell-container {
+    left: 94%;
+    top: 3%;
+    position: fixed;
+    transition: transform 0.3s;
+}
+
+.bell-container img {
+    width: 34px;
+    height: 34px;
+}
+
+
+
+.bell-container:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+.bell-container__counter__container {
+    position: absolute;
+    top: 15%;
+    right: 1%;
+}
+
+.bell-container__counter {
+    width: 5px;
+    height: 5px;
+    background-color: #ffa2a2;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 3px solid #ffa2a2;
+    font-size: 0.6rem;
+    text-align: center;
+    padding: 2px;
+    font-weight: bold;
+}
