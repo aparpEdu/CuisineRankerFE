@@ -1,10 +1,21 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './NotificationBell.css'
 import Bell from '../../assets/nottif-bell.svg'
 
 const NotificationBell = () => {
     const [show, setShow] = useState(false);
     const [counter, setCounter] = useState(0);
+
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyDown);
+    }, []);
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Escape") {
+            setShow(false);
+        }
+    }
 
     return (
         <div className={"bell-container"}>
