@@ -4,6 +4,7 @@ import Bell from '../../assets/nottif-bell.svg'
 import api from  '../../services/api'
 import SockJS from 'sockjs-client';
 import { Client } from '@stomp/stompjs';
+import error from "../../pages/error/Error";
 
 const NotificationBell = () => {
     const [show, setShow] = useState(false);
@@ -11,24 +12,42 @@ const NotificationBell = () => {
     const [notifications, setNotifications] = useState([]);
     const [email, setEmail] = useState("");
 
+
     useEffect(() => {
-        const socket = new SockJS('http://localhost:8080/websocket');
+        fetchUser();
+        fetchNotifications();
+
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, []);
+
+    useEffect(() => {
+        fetchNotifications();
+    }, [show]);
+
+    useEffect(() => {
+        if (!email) return;
+
+        const socket = new SockJS('http://localhost:443/websocket');
         const stompClient = new Client({
             webSocketFactory: () => socket,
             reconnectDelay: 5000,
+            heartbeatIncoming: 4000,
+            heartbeatOutgoing: 4000,
             debug: (str) => console.log(str),
         });
 
-        fetchUser();
-
-        document.addEventListener("keydown", handleKeyDown);
-        fetchNotifications();
-
-        stompClient.onConnect = (frame) => {
-            stompClient.subscribe('/user/' + email + '/topic/notifications', (message) => {
+        stompClient.onConnect = () => {
+            console.log(`Connected to server for email: ${email}`);
+            stompClient.subscribe(`/user/${email}/topic/notifications`, (message) => {
+                console.log('Notification received:', message.body);
                 fetchNotifications();
             });
         };
+        console.log()
 
         stompClient.activate();
 
@@ -64,8 +83,16 @@ const NotificationBell = () => {
         }
     }
 
-    const mapNotifications = ({notifications}) => {
+    const dismissNotification = async (notification) => {
+        try {
+            const confirmDismiss = window.confirm("Are you sure?");
+            if (confirmDismiss) {
+               await api.delete("notifications/" + notification.id);
+            }
 
+        } catch (e) {
+            console.error("Error dismissing notification", error);
+        }
     }
 
     return (
@@ -82,23 +109,13 @@ const NotificationBell = () => {
                     <div className={"notification-container"}>
                         <div className={"notification-container__title"}>
                             <p>{notification.title}</p>
-                            <p className={"notification-container__title__close"}>X</p>
+                            <p className={"notification-container__title__close"} onClick={()  => dismissNotification(notification)}>X</p>
                         </div>
                         <div className={"notification-container__message"}>
                             <p>{notification.message}</p>
                         </div>
                     </div>
                     ))}
-                    {/*<div className={"notification-container"}>*/}
-                    {/*    <div className={"notification-container__title"}>*/}
-                    {/*        <p>Title</p>*/}
-                    {/*        <p className={"notification-container__title__close"}>X</p>*/}
-                    {/*    </div>*/}
-                    {/*    <div className={"notification-container__message"}>*/}
-                    {/*        <p>Message</p>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-
                 </dialog>
             </div>
         </div>
