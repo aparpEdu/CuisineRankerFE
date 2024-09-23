@@ -1,0 +1,90 @@
+.bell-container {
+    z-index: 1;
+    left: 94%;
+    top: 2%;
+    position: fixed;
+}
+
+.bell-container img {
+    width: 34px;
+    height: 34px;
+    transition: transform 0.3s;
+}
+
+.bell-container img:hover,
+.bell-container img:focus{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+.bell-container__counter__container {
+    position: absolute;
+    top: 15%;
+    right: 1%;
+}
+
+.bell-container__counter {
+    width: 5px;
+    height: 5px;
+    background-color: #ffa2a2;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 3px solid #ffa2a2;
+    font-size: 0.6rem;
+    text-align: center;
+    padding: 2px;
+    font-weight: bold;
+}
+
+.bell-container__menu__box dialog {
+    margin-right: 2px;
+    background-color:inherit;
+    border-radius: 8px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-color: white #131f24;
+    scrollbar-width: thin;
+    color: whitesmoke;
+    width: 12rem;
+    height: 20rem;
+    background-color: #131f24;
+    border: 2px solid #ffa2a2;
+}
+
+dialog .notification-container {
+    /*border: 1px solid #1a1f22;*/
+    border-bottom: 2px solid #d4b063;
+    width: 12rem;
+    margin-bottom: 1rem;
+}
+
+.notification-container__title p {
+    color: #d4b063 ;
+    margin: 0;
+}
+
+dialog .notification-container__title {
+    padding: 0.2rem 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.notification-container__title__close {
+    font-size: 1rem;
+}
+
+
+.notification-container__title__close:hover {
+
+    cursor: pointer;
+    filter: invert(1);
+}
+
+.notification-container__message {
+    padding: 0 0.1rem;
+}
