@@ -95,6 +95,16 @@ const NotificationBell = () => {
         }
     }
 
+    const getHighestTimeMetric = (notification) => {
+        if (notification.yearsSince) return `${notification.yearsSince} years ago`;
+        if (notification.monthsSince) return `${notification.monthsSince} months ago`;
+        if (notification.weeksSince) return `${notification.weeksSince} weeks ago`;
+        if (notification.daysSince) return `${notification.daysSince} days ago`;
+        if (notification.hoursSince) return `${notification.hoursSince} hours ago`;
+        if (notification.minutesSince) return `${notification.minutesSince} minutes ago`;
+        return "Just now";
+    }
+
     return (
         <div className={"bell-container"}>
             <img src={Bell} alt="Notification Bell" onClick={() => setShow(!show)} />
@@ -113,6 +123,7 @@ const NotificationBell = () => {
                         </div>
                         <div className={"notification-container__message"}>
                             <p>{notification.message}</p>
+                            <p className={"notification-container__time"}>{getHighestTimeMetric(notification)}</p>
                         </div>
                     </div>
                     ))}
